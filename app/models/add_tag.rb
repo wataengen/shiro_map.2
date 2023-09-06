@@ -1,0 +1,3 @@
+class AddTag < ApplicationRecord
+  
+end

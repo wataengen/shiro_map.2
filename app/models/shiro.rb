@@ -1,0 +1,2 @@
+class Shiro < ApplicationRecord
+end

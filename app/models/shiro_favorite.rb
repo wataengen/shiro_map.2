@@ -1,0 +1,2 @@
+class ShiroFavorite < ApplicationRecord
+end

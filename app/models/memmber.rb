@@ -1,0 +1,2 @@
+class Memmber < ApplicationRecord
+end

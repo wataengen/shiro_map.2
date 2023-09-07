@@ -2,10 +2,23 @@
 <div class="container p-3">
   <div class="row">
   <div class="col-12">
-    <div class="main-visual-cover mx-auto mt-5 mb-5">
+    <% if @posts.nil? %>
+        <div>まだ投稿はありません</div>
+      <% else %>
+        <% @posts.each do |post| %>
+        <div>
+          <div>
+            <%= image_tag post.image, size: "15x15" %>
+          </div>
+          <div>コメント</div>
+          <div>
+            <%= link_to post.name, post_path(post.id) %>
+          </div>
 
-    </div>
+        </div>
+        <% end %>
+      <% end %>
   </div>
-
+</div>
 </div>
 <%= render 'public/shared/footer.html.erb' %>

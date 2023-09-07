@@ -7,6 +7,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string :nick_name,          null: false
+      t.string :profile,            null: false, default: ""
       t.boolean :is_deleted,        null: false, default: false
 
       ## Recoverable

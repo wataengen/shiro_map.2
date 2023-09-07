@@ -22,7 +22,7 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
 
     resources :my_maps, only: [:index, :destory, :create]
     get 'shiro_favorites/index'
-    resources :posts,   only: [:new, :index, :show, :edit]
+    resources :posts
     get 'post_favorites/index'
 
     get 'search' => "searches#search_top"

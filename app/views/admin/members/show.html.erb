@@ -1,8 +1,33 @@
 <%= render 'admin/shared/header.html.erb' %>
 <div class="container p-3">
   <div class="row">
-  <div class="col-12">
-    
-  </div>
+    <div class="col-12">
+      <div>会員ID</div>
+      <div>
+        <%= @member.id %>
+      </div>
+      <div>ニックネーム</div>
+      <div>
+        <%= @member.nick_name %>
+      </div>
+      <div>メールアドレス</div>
+      <div>
+        <%= @member.email %>
+      </div>
+      <div>ステータス</div>
+      <div>
+        <% if @member.is_deleted == true %>
+          <b class="text-success">有効</b>
+        <% else %>
+          <b class="text-secondary">退会</b>
+        <% end %>
+      </div>
+      <div>
+      <%= link_to edit_admin_member_path(@member.id) do %>
+        <buttun class="btn btn-success">編集する</buttun>
+      <% end %>
+    </div>
 
+    </div>
+  </div>
 </div>

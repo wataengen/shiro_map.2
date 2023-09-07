@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2023_09_06_202640) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nick_name", null: false
-    t.string "is_deleted", default: "f", null: false
+    t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 2023_09_06_202640) do
     t.string "name", null: false
     t.text "detail", null: false
     t.string "shiro_map", null: false
+    t.boolean "display_status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

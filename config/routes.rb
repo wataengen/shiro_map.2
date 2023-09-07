@@ -35,8 +35,8 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
   namespace :admin do
     root to: "homes#top"
     resources :shiros, except: [:destroy]
-    resources :posts,  only: [:index, :create, :edit, :update]
-    resources :members, only: [:index, :show, :edit, :update]
+    resources :posts,  only:   [:index, :show, :edit, :update]
+    resources :members, only:  [:index, :show, :edit, :update]
 
     get 'search' => "searches#search_top"
     get 'searches/search_shiro_index'

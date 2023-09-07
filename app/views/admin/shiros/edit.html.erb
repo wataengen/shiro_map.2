@@ -2,9 +2,40 @@
 <div class="container p-3">
   <div class="row">
   <div class="col-12">
-    <div class="main-visual-cover mx-auto mt-5 mb-5">
+    <%= form_with model: @shiro, url: admin_shiro_path(@shiro.id), "data-turbolinks": false do |f| %>
+    <h3>城編集</h3>
+      <div>城画像</div>
+      <div>
+        <%= f.file_field :image, accpet: "image/" %>
+      </div>
+      <div>城名</div>
+      <div>
+        <%= f.text_field :name %>
+      </div>
+      <div>城詳細</div>
+      <div>
+        <%= f.text_area :detail %>
+      </div>
+      <div>城マップ情報</div>
+      <div>
+        <%= f.text_field :shiro_map %>
+      </div>
 
-    </div>
+      <div class="row">
+          <div class="col-3">表示ステータス</div>
+          <div class="col-6">
+            <%= f.radio_button :display_status, :true, checked: true, class: "mt-2"  %>
+            <%= f.label :display_status, "表示" %>
+            <%= f.radio_button :display_status, :false %>
+            <%= f.label :display_status, "非表示" %>
+          </div>
+        </div>
+
+      <div>
+        <%= f.submit '変更を保存' %>
+      </div>
+
+    <% end %>
   </div>
-
+</div>
 </div>

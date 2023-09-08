@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 2023_09_06_202640) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id", "tag_id"], name: "index_add_tags_on_post_id_and_tag_id", unique: true
+    t.index ["post_id"], name: "index_add_tags_on_post_id"
+    t.index ["tag_id"], name: "index_add_tags_on_tag_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -91,7 +94,6 @@ ActiveRecord::Schema.define(version: 2023_09_06_202640) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "member_id", null: false
-    t.integer "add_tag", null: false
     t.text "post_text", null: false
     t.boolean "display_status", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
@@ -118,8 +120,11 @@ ActiveRecord::Schema.define(version: 2023_09_06_202640) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "add_tags", "posts"
+  add_foreign_key "add_tags", "tags"
 end

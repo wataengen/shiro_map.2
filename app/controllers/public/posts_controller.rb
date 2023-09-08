@@ -1,11 +1,14 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
   def create
     post = Post.new(post_params)
     post.member_id = current_member.id
+    tag_list = params[:post][:name].split(',')
     if post.save
+      post.save_tags(tag_list)
       redirect_to post_path(post.id)
     else
       @post = Post.new
@@ -15,20 +18,25 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.where(member_id = current_member.id)
-
+    @tag_list = Tag.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
+    @post_tags = @post.tags
   end
 
   def edit
     @post = Post.find(params[:id])
+    @tag_list = @post.tags.pluck(:name).join(',')
   end
 
   def update
     post = Post.find(params[:id])
+    tag_list = params[:post][:name].split(',')
     if post.update(post_params)
+      post.save_tags(tag_list)
       redirect_to post_path
     else
       @shiro = Shiro.find(params[:id])
@@ -38,6 +46,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:member_id, :add_tag, :post_text, :display_status, :image)
+    params.require(:post).permit(:member_id, :post_text, :display_status, :image)
   end
 end

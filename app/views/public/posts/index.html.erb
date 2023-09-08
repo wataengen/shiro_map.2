@@ -2,9 +2,18 @@
 <div class="container p-3">
   <div class="row">
   <div class="col-12">
+    <h3>投稿一覧</h3>
     <% if @posts.nil? %>
         <div>まだ投稿はありません</div>
       <% else %>
+      <div>タグ一覧</div>
+      <div>
+        <% @tag_list.each do |list|%>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%=link_to list.name,searches_search_tag_index_path(tag_id: list.id) %>
+          <%="(#{list.post_workouts.count})" %>
+        <% end %>
+      </div>
         <% @posts.each do |post| %>
         <div>
           <div>

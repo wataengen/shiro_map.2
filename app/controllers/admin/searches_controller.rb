@@ -6,5 +6,8 @@ class Admin::SearchesController < ApplicationController
   end
 
   def search_tag_index
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @post = @tag.posts
   end
 end

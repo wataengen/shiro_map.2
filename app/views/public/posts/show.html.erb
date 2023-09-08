@@ -10,7 +10,13 @@
     <div>
       <%= @post.post_text %>
     </div>
-    
+    <div>
+      <% @post_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,searches_search_tag_index_path(tag_id: tag.id) %>
+      <% end %>
+
+    </div>
     <div>
       <%= link_to edit_post_path(@post.id) do %>
         <buttun class="btn btn-success">編集する</buttun>

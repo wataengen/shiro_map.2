@@ -1,7 +1,7 @@
 class Public::MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
-    @posts = Post.where(member_id = params[:id])
+    @posts = Post.where(member_id = params[:id]).where(display_status: true)
   end
 
   def edit

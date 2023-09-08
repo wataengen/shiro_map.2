@@ -7,7 +7,8 @@
         <%= link_to "+", new_admin_shiro_path, class: 'btn', style: 'background-color: #808080; color: white; mx-3; width:40px; height:40px;' %>
       </div>
       <% if @shiros.nil? %>
-        <div>まだ登録されていません</div>
+      
+        <h4>まだ登録されていません</h4>
       <% else %>
         <% @shiros.each do |shiro| %>
         <div>

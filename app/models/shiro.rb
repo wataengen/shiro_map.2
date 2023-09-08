@@ -1,5 +1,5 @@
 class Shiro < ApplicationRecord
-  has_many   :post_favorites, dependent: :destroy
+  has_many   :shiro_favorites, dependent: :destroy
   has_one_attached :image
 
   def shiro_favorited_by?(member)

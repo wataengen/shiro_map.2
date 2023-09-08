@@ -1,11 +1,35 @@
 <%= render 'public/shared/header.html.erb' %>
 <div class="container p-3">
   <div class="row">
-  <div class="col-12">
-    <div class="main-visual-cover mx-auto mt-5 mb-5">
+    <div class="col-12">
+       <% if @shiros.nil? %>
+
+        <h4>まだ登録されていません</h4>
+      <% else %>
+        <% @shiros.each do |shiro| %>
+        <div>
+          <div>
+            <%= image_tag shiro.image, size: "200x200" %>
+          </div>
+          <div>城名</div>
+          <div>
+            <%= link_to shiro.name, shiro_path(shiro.id) %>
+          </div>
+          <div>城詳細</div>
+          <div>
+            <%= shiro.detail %>
+          </div>
+          <div>城マップ情報</div>
+          <div>
+            <%= shiro.shiro_map %>
+          </div>
+
+
+        </div>
+        <% end %>
+      <% end %>
 
     </div>
   </div>
-
 </div>
 <%= render 'public/shared/footer.html.erb' %>

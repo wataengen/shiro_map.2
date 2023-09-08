@@ -18,22 +18,7 @@
       <% end %>
     </div>
     <div>
-      <div class="flex-for-more-md col-lg-7 offset-lg-1 col-md-2 offset-md-7 col-sm-2 offset-sm-5 col-6">
-        <div>
-          <nav class="mb-2 float-right navbar navbar-expand-lg navbar-dark">
-            <button class="navbar-toggler mt-3" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarDropdown">
-              <ul class="navbar-nav horizontal-for-more-than-md">
-                <li class="nav-item"><%= link_to "訪れた城", root_path, class: "btn text-secondary mr-3" %></li>
-                <li class="nav-item"><%= link_to "行きたい城", shiro_favorites_index_path, class: "btn text-secondary mr-3" %></li>
-                <li class="nav-item"><%= link_to "いいね", post_favorites_index_path, class: "btn text-secondary mr-3, 'data-turbolinks': false" %></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
+      <%= render 'members_bar', member: @member %>
     </div>
     <div>
        <% if @posts.nil? %>
@@ -46,6 +31,20 @@
           </div>
           <div>
             <%= post.post_text %>
+          </div>
+          <div>
+            <% if post.post_favorited_by?(current_member) %>
+              <%= link_to post_post_favorite_path(post), method: :delete do %>
+                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= post.post_favorites.count %> いいね
+              <% end %>
+            <% else %>
+              <%= link_to post_post_favorites_path(post), method: :post do %>
+                <i class="fas fa-heart" aria-hidden="true"></i>
+                <%= post.post_favorites.count %> いいね
+              <% end %>
+            <% end %>
+
           </div>
         </div>
         <% end %>

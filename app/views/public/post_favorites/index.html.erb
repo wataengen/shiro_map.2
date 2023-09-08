@@ -2,10 +2,49 @@
 <div class="container p-3">
   <div class="row">
   <div class="col-12">
-    <div class="main-visual-cover mx-auto mt-5 mb-5">
-
+    <div>ニックネーム</div>
+    <div>
+      <%= @member.nick_name %>
     </div>
-  </div>
+    <div>プロフィール</div>
+    <div>
+      <%= @member.profile %>
+    </div>
+    <div>
+      <% if params[:id] = current_member.id %>
+        <%= link_to edit_member_path(current_member.id) do %>
+          <buttun class="btn btn-success">プロフィールを編集する</buttun>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <%= render 'public/members/members_bar', member: @member %>
+    </div>
+    <div>
+       <% if @posts.nil? %>
+        <div>まだ投稿はありません</div>
+      <% else %>
+        <% @posts.each do |post| %>
+        <div>
+          <div>
+            <%= image_tag post.image, size: "200x200" %>
+          </div>
+          <div>
+            <%= post.post_text %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <% if params[:id] = current_member.id %>
+        <%= link_to new_post_path do %>
+          <buttun class="btn btn-success">新規投稿する</buttun>
+        <% end %>
+      <% end %>
+    </div>
 
+  </div>
+</div>
 </div>
 <%= render 'public/shared/footer.html.erb' %>

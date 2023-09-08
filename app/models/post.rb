@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
-  has_many   :add_tags, dependent: :destroy
-  has_many   :tags,     through:   :add_tags
+  has_many   :add_tags,       dependent: :destroy
+  has_many   :tags,           through:   :add_tags
+  has_many   :post_favorites, dependent: :destroy
 
   belongs_to :member
 
@@ -25,5 +26,9 @@ class Post < ApplicationRecord
     posts = where("post_text LIKE ?", "%#{word}%")
     posts = posts.where(display_status: true) unless include_inactive
     posts
+  end
+
+  def post_favorited_by?(member)
+   post_favorites.exists?(member_id: member.id)
   end
 end

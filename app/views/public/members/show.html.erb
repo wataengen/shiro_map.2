@@ -2,11 +2,63 @@
 <div class="container p-3">
   <div class="row">
   <div class="col-12">
-    <% if params[:id] = current_member.id %>
-      <%= link_to new_post_path do %>
-        <buttun class="btn btn-success">新規投稿する</buttun>
+    <div>ニックネーム</div>
+    <div>
+      <%= @member.nick_name %>
+    </div>
+    <div>プロフィール</div>
+    <div>
+      <%= @member.profile %>
+    </div>
+    <div>
+      <% if params[:id] = current_member.id %>
+        <%= link_to edit_member_path(current_member.id) do %>
+          <buttun class="btn btn-success">プロフィールを編集する</buttun>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <div>
+      <div class="flex-for-more-md col-lg-7 offset-lg-1 col-md-2 offset-md-7 col-sm-2 offset-sm-5 col-6">
+        <div>
+          <nav class="mb-2 float-right navbar navbar-expand-lg navbar-dark">
+            <button class="navbar-toggler mt-3" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarDropdown">
+              <ul class="navbar-nav horizontal-for-more-than-md">
+                <li class="nav-item"><%= link_to "訪れた城", root_path, class: "btn text-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "行きたい城", shiro_favorites_index_path, class: "btn text-secondary mr-3" %></li>
+                <li class="nav-item"><%= link_to "いいね", post_favorites_index_path, class: "btn text-secondary mr-3, 'data-turbolinks': false" %></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div>
+       <% if @posts.nil? %>
+        <div>まだ投稿はありません</div>
+      <% else %>
+        <% @posts.each do |post| %>
+        <div>
+          <div>
+            <%= image_tag post.image, size: "200x200" %>
+          </div>
+          <div>
+            <%= post.post_text %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <% if params[:id] = current_member.id %>
+        <%= link_to new_post_path do %>
+          <buttun class="btn btn-success">新規投稿する</buttun>
+        <% end %>
+      <% end %>
+    </div>
+
   </div>
 </div>
 </div>

@@ -1,7 +1,8 @@
 class Public::ShiroFavoritesController < ApplicationController
   def index
-    @member = Member.find(params[:member_id])
-    @posts = Post.where(member_id = params[:id]).where(display_status: true)
+    @member = Member.find(params[:id])
+    favorites = ShiroFavorite.where(member_id: @member.id).pluck(:shiro_id)
+    @shiro_favorites = Shiro.find(favorites)
   end
   def create
     shiro = Shiro.find(params[:shiro_id])

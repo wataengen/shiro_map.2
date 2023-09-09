@@ -21,10 +21,10 @@
       <%= render 'public/members/members_bar', member: @member %>
     </div>
     <div>
-       <% if @posts.nil? %>
-        <div>まだ投稿はありません</div>
+       <% if @post_favorites.nil? %>
+        <div>まだいいねはありません</div>
       <% else %>
-        <% @posts.each do |post| %>
+        <% @post_favorites.each do |post| %>
         <div>
           <div>
             <%= image_tag post.image, size: "200x200" %>

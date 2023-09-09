@@ -19,9 +19,11 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
     end
 
     resources :members, only: [:show, :edit, :update] do
-      resources :my_maps,           only: [:index, :create, :destory]
-      resources :shiro_favorites,   only: [:index]
-      resources :post_favorites,    only: [:index]
+      member do
+        resources :my_maps,           only: [:index, :create, :destory]
+        resources :shiro_favorites,   only: [:index]
+        resources :post_favorites,    only: [:index]
+      end
     end
     get "members/confirm_quit" => "members#confirm_quit"
     patch "members/quit"       => "members#quit"

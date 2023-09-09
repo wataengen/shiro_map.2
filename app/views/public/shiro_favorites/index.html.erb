@@ -21,16 +21,19 @@
       <%= render 'public/members/members_bar', member: @member %>
     </div>
     <div>
-       <% if @posts.nil? %>
-        <div>まだ投稿はありません</div>
+       <% if @shiro_favorites.nil? %>
+        <div>まだ行きたい城はありません</div>
       <% else %>
-        <% @posts.each do |post| %>
+        <% @shiro_favorites.each do |shiro| %>
         <div>
           <div>
-            <%= image_tag post.image, size: "200x200" %>
+            <%= image_tag shiro.image, size: "200x200" %>
           </div>
           <div>
-            <%= post.post_text %>
+            <%= shiro.name %>
+          </div>
+          <div>
+            <%= shiro.detail %>
           </div>
         </div>
         <% end %>

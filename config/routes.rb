@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 devise_for :members,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -16,19 +15,22 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
 
     resources :shiros,  only: [:index, :show] do
       resources :shiro_favorites,   only: [:create, :destroy]
+      resources :my_maps,           only: [:create, :destroy]
     end
 
     resources :members, only: [:show, :edit, :update] do
       member do
-        resources :my_maps,           only: [:index, :create, :destory]
         resources :shiro_favorites,   only: [:index]
         resources :post_favorites,    only: [:index]
+        resources :post_comments,     only: [:index, :show, :edit, :update]
+        resources :my_maps,           only: [:index]
       end
     end
     get "members/confirm_quit" => "members#confirm_quit"
     patch "members/quit"       => "members#quit"
 
     resources :posts do
+      resources :post_comments,     only: [:create, :destroy]
       resources :post_favorites,    only: [:create, :destroy]
     end
 
@@ -44,6 +46,7 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
     resources :shiros,   except: [:destroy]
     resources :posts,    only:   [:index, :show, :edit, :update]
     resources :members,  only:   [:index, :show, :edit, :update]
+    resources :post_comments,  only:   [:index, :show, :edit, :update]
 
     get 'search' => "searches#search_top"
     get 'searches/search_shiro_index'

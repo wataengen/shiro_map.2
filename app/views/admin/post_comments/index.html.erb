@@ -1,0 +1,30 @@
+<%= render 'admin/shared/header.html.erb' %>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <h3>コメント一覧画面</h3>
+      <% if @post_comments.nil? %>
+        <h4>まだ登録されていません</h4>
+      <% else %>
+        <p>コメント件数：<%= @post_comments.count %></p>
+        <% @post_comments.each do |post_comment| %>
+          <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
+          <div>
+            <%= post_comment.member.nick_name %>
+          </div>
+          <div>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <div>
+            <%= link_to admin_post_comment_path(post_comment) do %>
+          </div>
+          <div>
+            <%= post_comment.comment %>
+          </div>
+          <% end %>
+        <% end %>
+    </div>
+      <% end %>
+    </div>
+  </div>
+</div>

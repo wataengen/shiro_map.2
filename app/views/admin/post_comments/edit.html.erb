@@ -1,0 +1,43 @@
+<%= render 'admin/shared/header.html.erb' %>
+<div class="container p-3">
+  <div class="row">
+  <div class="col-12">
+    <div>画像</div>
+    <div>
+      <%= image_tag @post.image, size: "200x200" %>
+    </div>
+    <div>コメント</div>
+    <div>
+      <%= @post.post_text %>
+    </div>
+    <div>
+      <% @post_tags.each do |tag| %>
+      <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to tag.name,searches_search_tag_index_path(tag_id: tag.id) %>
+      <% end %>
+    </div>
+    <div>
+      <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
+      <%= @post_comment.member.nick_name %>
+      <%= @post_comment.created_at.strftime('%Y/%m/%d') %>
+
+      <%= form_with model: @post_comment, url: admin_post_comment_path do |f| %>
+        <%= f.text_area :comment %>
+        <div class="row">
+          <div class="col-3">表示ステータス</div>
+          <div class="col-6">
+            <%= f.radio_button :display_status, :true, checked: true, class: "mt-2"  %>
+            <%= f.label :display_status, "表示" %>
+            <%= f.radio_button :display_status, :false %>
+            <%= f.label :display_status, "非表示" %>
+          </div>
+        </div>
+        <div>
+          <%= f.submit '変更を保存' %>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+</div>

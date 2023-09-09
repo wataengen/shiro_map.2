@@ -30,7 +30,7 @@
             <%= image_tag post.image, size: "200x200" %>
           </div>
           <div>
-            <%= post.post_text %>
+            <%= link_to post.post_text, post_path(post.id) %>
           </div>
           <div>
             <% if post.post_favorited_by?(current_member) %>

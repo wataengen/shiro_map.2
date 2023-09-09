@@ -25,6 +25,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @tag_list = @post.tags.pluck(:name).join(',')
     @post_tags = @post.tags
+    @post_comment = PostComment.new
   end
 
   def edit

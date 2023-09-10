@@ -9,11 +9,11 @@
           <th>コメント日時</th>
           <th>コメント内容</th>
         </thead>
-        <tbody>
-          <% if @post_comments.nil? %>
-            <h4>まだ登録されていません</h4>
-          <% else %>
-            <% @post_comments.each do |post_comment| %>
+        <% if @post_comments.blank? %>
+          <h4>まだ登録されていません</h4>
+        <% else %>
+          <% @post_comments.each do |post_comment| %>
+          <tbody>
             <td>
               <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
               <%= post_comment.member.nick_name %>
@@ -26,10 +26,10 @@
                 <%= post_comment.comment %>
               <% end %>
             </td>
-        </tbody>
+          </tbody>
+          <% end %>
         <% end %>
       </table>
-      <% end %>
     </div>
   </div>
 </div>

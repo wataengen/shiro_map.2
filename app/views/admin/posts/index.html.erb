@@ -11,24 +11,28 @@
           <th>コメント</th>
           <th>ステータス</th>
         </thead>
-        <% @posts.each do |post| %>
-        <tbody>
-          <td><%= post.id %></td>
-          <td>
-            <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), admin_post_path(post.id) %>
-          </td>
-          <td>
-            <%= link_to post.member.nick_name, admin_member_path(post.member.id) %>
-          </td>
-          <td><%= post.post_text %></td>
-          <td>
-            <% if post.display_status == true %>
-              <b class="text-success">表示</b>
-            <% else %>
-              <b class="text-secondary">非表示</b>
-        　    <% end %>
-          </td>
-        </tbody>
+        <% if @post_favorites.blank? %>
+          <div>まだ投稿はありません</div>
+        <% else %>
+          <% @posts.each do |post| %>
+          <tbody>
+            <td><%= post.id %></td>
+            <td>
+              <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), admin_post_path(post.id) %>
+            </td>
+            <td>
+              <%= link_to post.member.nick_name, admin_member_path(post.member.id) %>
+            </td>
+            <td><%= post.post_text %></td>
+            <td>
+              <% if post.display_status == true %>
+                <b class="text-success">表示</b>
+              <% else %>
+                <b class="text-secondary">非表示</b>
+          　    <% end %>
+            </td>
+          </tbody>
+          <% end %>
         <% end %>
       </table>
 

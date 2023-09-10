@@ -6,9 +6,7 @@
       <div class="text-right mb-3">
         <%= link_to "+", new_admin_shiro_path, class: 'btn', style: 'background-color: #808080; color: white; mx-3; width:40px; height:40px;' %>
       </div>
-      <% if @shiros.nil? %>
-        <h4>まだ登録されていません</h4>
-      <% else %>
+
       <table class="table">
         <thead>
           <th>画像</th>
@@ -17,35 +15,36 @@
           <th>城マップ情報</th>
           <th>表示ステータス</th>
         </thead>
-        <tbody>
+        <% if @shiros.blank? %>
+          <div>まだ登録されていません</div>
+        <% else %>
           <% @shiros.each do |shiro| %>
-            <td>
-              <%= image_tag shiro.image, size: "15x15" %>
-            </td>
-            <td>
-              <%= link_to shiro.name, admin_shiro_path(shiro.id) %>
-            </td>
-            <td>
-              <%= shiro.detail %>
-            </td>
-            <td>
-              <%= shiro.shiro_map %>
-            </td>
-            <td>
-              <div class="col-md-9">
-                <% if shiro.display_status == true %>
-                  <b class="text-success">表示</b>
-                <% else %>
-                  <b class="text-secondary">非表示</b>
-        　       <% end %>
-              </div>
-            </td>
-          <% end %>
-        </tbody>
-      <% end %>
+            <tbody>
+              <td>
+                <%= image_tag shiro.image, size: "15x15" %>
+              </td>
+              <td>
+                <%= link_to shiro.name, admin_shiro_path(shiro.id) %>
+              </td>
+              <td>
+                <%= shiro.detail %>
+              </td>
+              <td>
+                <%= shiro.shiro_map %>
+              </td>
+              <td>
+                <div class="col-md-9">
+                  <% if shiro.display_status == true %>
+                    <b class="text-success">表示</b>
+                  <% else %>
+                    <b class="text-secondary">非表示</b>
+          　       <% end %>
+                </div>
+              </td>
+          </tbody>
+        <% end %>
       </table>
-
-
+    <% end %>
     </div>
   </div>
 </div>

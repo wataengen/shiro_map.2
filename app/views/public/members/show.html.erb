@@ -3,27 +3,13 @@
   <div class="row">
     <div class="col-12">
       <div>
-        <div>ニックネーム</div>
-        <div>
-          <%= @member.nick_name %>
-        </div>
-        <div>プロフィール</div>
-        <div>
-          <%= @member.profile %>
-        </div>
-        <div>
-          <% if params[:id] = current_member.id %>
-            <%= link_to edit_member_path(current_member.id) do %>
-              <buttun class="btn btn-success">プロフィールを編集する</buttun>
-            <% end %>
-          <% end %>
-        </div>
+        <%= render 'public/members/members_profile', member: @member %>
       </div>
     <div>
       <%= render 'members_bar', member: @member %>
     </div>
     <div>
-       <% if @posts.nil? %>
+      <% if @posts.blank? %>
         <div>まだ投稿はありません</div>
       <% else %>
         <% @posts.each do |post| %>

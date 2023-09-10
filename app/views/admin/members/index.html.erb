@@ -11,21 +11,25 @@
           <th>メールアドレス</th>
           <th>ステータス</th>
         </thead>
-        <% @members.each do |member| %>
-        <tbody>
-          <td><%= member.id %></td>
-          <td>
-            <%= link_to member.nick_name, admin_member_path(member.id) %>
-          </td>
-          <td><%= member.email %></td>
-          <td>
-            <% if member.is_deleted == true %>
-              <b class="text-secondary">退会</b>
-            <% else %>
-              <b class="text-success">有効</b>
-        　   <% end %>
-          </td>
-        </tbody>
+        <% if @post_favorites.blank? %>
+          <div>まだ会員はいません</div>
+        <% else %>
+          <% @members.each do |member| %>
+          <tbody>
+            <td><%= member.id %></td>
+            <td>
+              <%= link_to member.nick_name, admin_member_path(member.id) %>
+            </td>
+            <td><%= member.email %></td>
+            <td>
+              <% if member.is_deleted == true %>
+                <b class="text-secondary">退会</b>
+              <% else %>
+                <b class="text-success">有効</b>
+          　   <% end %>
+            </td>
+          </tbody>
+          <% end %>
         <% end %>
       </table>
     </div>

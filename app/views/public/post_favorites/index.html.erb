@@ -15,11 +15,7 @@
       <% end %>
     </div>
     <div>
-      <% if params[:id] = current_member.id %>
-        <%= link_to new_post_path do %>
-          <buttun class="btn btn-success">新規投稿する</buttun>
-        <% end %>
-      <% end %>
+      <%= render 'public/shared/new_post_btn' %>
     </div>
 
   </div>

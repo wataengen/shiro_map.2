@@ -1,4 +1,5 @@
 class Public::PostFavoritesController < ApplicationController
+  before_action :authenticate_member!, except: [:index]
   def index
     @member = Member.find(params[:id])
     favorites = PostFavorite.where(member_id: @member.id).pluck(:post_id)

@@ -2,9 +2,8 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-12">
-      <h3>投稿一覧　全件</h3>
-
-      <tabel>
+      <h3>投稿一覧　(全<%= @posts.count %>件)</h3>
+      <table class="table">
         <thead>
           <th>投稿ID</th>
           <th>投稿日時</th>
@@ -12,26 +11,26 @@
           <th>コメント</th>
           <th>ステータス</th>
         </thead>
+        <% @posts.each do |post| %>
         <tbody>
-          <% @posts.each do |post| %>
-            <td><%= post.id %></td>
-            <td>
-              <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), admin_post_path(post.id) %>
-            </td>
-            <td>
-              <%= post.member_id %>
-            </td>
-            <td><%= post.post_text %></td>
-            <td>
-              <% if post.display_status == true %>
-                <b class="text-success">表示</b>
-              <% else %>
-                <b class="text-secondary">非表示</b>
-        　     <% end %>
-            </td>
-          <% end %>
+          <td><%= post.id %></td>
+          <td>
+            <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), admin_post_path(post.id) %>
+          </td>
+          <td>
+            <%= link_to post.member.nick_name, admin_member_path(post.member.id) %>
+          </td>
+          <td><%= post.post_text %></td>
+          <td>
+            <% if post.display_status == true %>
+              <b class="text-success">表示</b>
+            <% else %>
+              <b class="text-secondary">非表示</b>
+        　    <% end %>
+          </td>
         </tbody>
-      </tabel>
+        <% end %>
+      </table>
 
     </div>
   </div>

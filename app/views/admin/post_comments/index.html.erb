@@ -2,28 +2,33 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-12">
-      <h3>コメント一覧画面</h3>
-      <% if @post_comments.nil? %>
-        <h4>まだ登録されていません</h4>
-      <% else %>
-        <p>コメント件数：<%= @post_comments.count %></p>
-        <% @post_comments.each do |post_comment| %>
-          <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
-          <div>
-            <%= post_comment.member.nick_name %>
-          </div>
-          <div>
-            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-          </div>
-          <div>
-            <%= link_to admin_post_comment_path(post_comment) do %>
-          </div>
-          <div>
-            <%= post_comment.comment %>
-          </div>
-          <% end %>
+      <h3>コメント一覧画面 コメント件数：<%= @post_comments.count %></h3>
+      <table class="table">
+        <thead>
+          <th>コメントメンバー</th>
+          <th>コメント日時</th>
+          <th>コメント内容</th>
+        </thead>
+        <tbody>
+          <% if @post_comments.nil? %>
+            <h4>まだ登録されていません</h4>
+          <% else %>
+            <% @post_comments.each do |post_comment| %>
+            <td>
+              <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
+              <%= post_comment.member.nick_name %>
+            </td>
+            <td>
+              <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+            </td>
+            <td>
+              <%= link_to admin_post_comment_path(post_comment) do %>
+                <%= post_comment.comment %>
+              <% end %>
+            </td>
+        </tbody>
         <% end %>
-    </div>
+      </table>
       <% end %>
     </div>
   </div>

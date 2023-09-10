@@ -8,8 +8,10 @@ class Member < ApplicationRecord
   has_many :shiro_favorites, dependent: :destroy
   has_many :post_favorites,  dependent: :destroy
   has_many :post_comments,   dependent: :destroy
+  has_many :my_maps,   dependent: :destroy
 
-  has_one_attached :image
+  has_one_attached :icon_image
+  has_one_attached :back_ground_image
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |member|

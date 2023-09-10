@@ -1,4 +1,5 @@
 class Admin::ShirosController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @shiros = Shiro.all
   end

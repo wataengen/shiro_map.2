@@ -1,13 +1,7 @@
-<h3>検索</h3>
-  <div class="form-inline float-right">
-    <%= form_with url: searches_search_post_index_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word, class: "form-control mr-sm-2 search-form", placeholder: "Search", id: nil %>
-      <%= button_tag type: "submit", class: "btn text-secondary my-2 my-sm-0" do %>
-        <i class="fas fa-search"></i>
-   　　<% end %>
-    <% end %>
-  </div>
-      <h4>タグ</h4>
+<h3>投稿検索</h3>
+<%= render 'search_bar' %>
+  <div>
+    <h4>タグ</h4>
       <div>
         <% @tag_list.each do |list|%>
           <i class="fa-sharp fa-solid fa-tag"></i>
@@ -15,7 +9,9 @@
           <%="(#{list.post.where(display_status: true).count})" %>
         <% end %>
       </div>
-      <h4>検索結果一覧</h4>
+  </div>
+  <div>
+    <h4>検索結果一覧</h4>
       <div>
         <% if @posts.nil? %>
           <div>まだ投稿はありません</div>
@@ -32,3 +28,5 @@
           <% end %>
         <% end %>
       </div>
+  </div>
+

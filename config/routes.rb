@@ -29,10 +29,11 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
         resources :post_favorites,    only: [:index]
         resources :post_comments,     only: [:index, :show, :edit, :update]
         resources :my_maps,           only: [:index]
+        get "members/confirm_quit" => "members#confirm_quit"
+        patch "members/quit"       => "members#quit"
       end
     end
-    get "members/confirm_quit" => "members#confirm_quit"
-    patch "members/quit"       => "members#quit"
+
 
     resources :posts do
       resources :post_comments,     only: [:create, :destroy]

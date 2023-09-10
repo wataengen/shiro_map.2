@@ -1,15 +1,18 @@
 <%= render 'public/shared/header.html.erb' %>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-12">
 
-<h2>Log in</h2>
+<h3>会員ログイン</h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <div>ニックネーム</div>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <div>パスワード（半角6文字以上）</div>
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
@@ -19,12 +22,19 @@
       <%= f.label :remember_me %>
     </div>
   <% end %>
-  <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, method: :post %>
-
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "ログイン" %>
   </div>
 <% end %>
+<div>
+  <%= link_to 'ゲストログイン（閲覧用）', members_guest_sign_in_path, method: :post %>
+</div>
+<div>
+  <%= render "public/shared/links" %>
+</div>
 
-<%= render "public/shared/links" %>
+    </div>
+  </div>
+</div>
+
 <%= render 'public/shared/footer.html.erb' %>

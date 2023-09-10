@@ -2,6 +2,7 @@ class Public::MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
     @posts = Post.where(member_id = params[:id]).where(display_status: true)
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -16,8 +17,15 @@ class Public::MembersController < ApplicationController
       render :edit
     end
   end
+  def quit
+    @member = current_member
+    @member.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
 
   def confirm_quit
+    @member = Member.find(params[:id])
   end
 
   private

@@ -1,0 +1,8 @@
+<div class="form-inline">
+    <%= form_with url: searches_search_post_index_path, local: true, method: :get do |f| %>
+      <%= f.text_field :word, class: "form-control mr-sm-2 search-form", placeholder: "Search", id: nil %>
+      <%= button_tag type: "submit", class: "btn text-secondary my-2 my-sm-0" do %>
+        <i class="fas fa-search"></i>
+   　　<% end %>
+    <% end %>
+  </div>

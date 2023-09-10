@@ -9,18 +9,9 @@
     </div>
     <div>
       <% if @post_favorites.blank? %>
-        <div>まだいいねはありません</div>
+        <div>まだいいねした投稿はありません</div>
       <% else %>
-        <% @post_favorites.each do |post| %>
-        <div>
-          <div>
-            <%= image_tag post.image, size: "200x200" %>
-          </div>
-          <div>
-            <%= post.post_text %>
-          </div>
-        </div>
-        <% end %>
+        <%= render 'public/shared/post_index', posts: @post_favorites %>
       <% end %>
     </div>
     <div>

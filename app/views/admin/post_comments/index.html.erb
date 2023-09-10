@@ -4,17 +4,20 @@
       <h3>コメント一覧画面 コメント件数：<%= @post_comments.count %></h3>
       <table class="table">
         <thead>
+          <th></th>
           <th>コメントメンバー</th>
           <th>コメント日時</th>
           <th>コメント内容</th>
         </thead>
         <% if @post_comments.blank? %>
-          <h4>まだ登録されていません</h4>
+          <div>まだ登録されていません</div>
         <% else %>
           <% @post_comments.each do |post_comment| %>
           <tbody>
             <td>
               <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
+            </td>
+            <td>
               <%= post_comment.member.nick_name %>
             </td>
             <td>

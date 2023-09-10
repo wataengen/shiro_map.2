@@ -3,9 +3,13 @@ class Public::PostCommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = current_member.post_comments.new(post_comment_params)
     comment.post_id = post.id
-    comment.save
-    redirect_to post_path(post)
+    if comment.save
+      redirect_to request.referer
+    else
+      redirect_to request.referer
+    end
   end
+
   def index
   end
 

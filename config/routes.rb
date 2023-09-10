@@ -37,7 +37,7 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
 
     resources :posts do
       resources :post_comments,     only: [:create, :destroy]
-      resources :post_favorites,    only: [:create, :destroy]
+      resource :post_favorites,    only: [:create, :destroy]
     end
 
     get 'search' => "searches#search_top"

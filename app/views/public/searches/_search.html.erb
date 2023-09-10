@@ -16,16 +16,7 @@
         <% if @posts.nil? %>
           <div>まだ投稿はありません</div>
         <% else %>
-          <% @posts.each do |post| %>
-          <div>
-            <div>
-              <%= image_tag post.image, size: "200x200" %>
-            </div>
-            <div>
-              <%= post.post_text %>
-            </div>
-          </div>
-          <% end %>
+          <%= render 'public/shared/post_index', posts: @posts %>
         <% end %>
       </div>
   </div>

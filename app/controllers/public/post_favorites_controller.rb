@@ -3,6 +3,7 @@ class Public::PostFavoritesController < ApplicationController
     @member = Member.find(params[:id])
     favorites = PostFavorite.where(member_id: @member.id).pluck(:post_id)
     @post_favorites = Post.find(favorites)
+    @post_comment = PostComment.new
   end
   def create
     post = Post.find(params[:post_id])

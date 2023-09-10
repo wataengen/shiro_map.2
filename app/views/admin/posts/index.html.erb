@@ -10,7 +10,7 @@
           <th>コメント</th>
           <th>ステータス</th>
         </thead>
-        <% if @post_favorites.blank? %>
+        <% if @posts.blank? %>
           <div>まだ投稿はありません</div>
         <% else %>
           <% @posts.each do |post| %>

@@ -13,6 +13,7 @@
           <%="(#{list.post_workouts.count})" %>
         <% end %>
       </div>
+      <%= render 'public/shared/post_index', posts: @posts %>
         <% @posts.each do |post| %>
         <div>
           <div>

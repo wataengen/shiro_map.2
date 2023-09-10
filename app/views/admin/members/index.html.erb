@@ -11,7 +11,7 @@
           <th>メールアドレス</th>
           <th>ステータス</th>
         </thead>
-        <% if @post_favorites.blank? %>
+        <% if @members.blank? %>
           <div>まだ会員はいません</div>
         <% else %>
           <% @members.each do |member| %>

@@ -1,7 +1,28 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-12">
-      <%= render 'search' %>
+      <h3>投稿検索</h3>
+      <%= render 'search_bar' %>
+      <div>
+        <h4>タグ</h4>
+        <div>
+          <% @tag_list.each do |list|%>
+            <i class="fa-sharp fa-solid fa-tag"></i>
+            <%=link_to list.name,searches_search_tag_index_path(tag_id: list.id) %>
+            <%="(#{list.post.where(display_status: true).count})" %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <h4>投稿一覧</h4>
+          <div>
+            <% if @posts.nil? %>
+              <div>まだ投稿はありません</div>
+            <% else %>
+              <%= render 'public/shared/post_index', posts: @posts %>
+            <% end %>
+          </div>
+      </div>
     </div>
   </div>
 </div>

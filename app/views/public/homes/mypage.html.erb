@@ -1,0 +1,35 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <h3>マイページ</h3>
+      <div>
+        <%= render 'public/members/members_profile', member: @member %>
+        <div>
+          <% if member_signed_in? %>
+            <% if params[:id] = current_member.id %>
+              <%= link_to edit_member_path(current_member.id) do %>
+                <buttun class="btn btn-success">プロフィールを編集する</buttun>
+              <% end %>
+            <% end %>
+          <% else %>
+            <div>見るだけ</div>
+          <% end %>
+        </div>
+      </div>
+    <div>
+      <%= render 'public/members/members_bar', member: @member %>
+    </div>
+    <div>
+      <% if @posts.blank? %>
+        <div>まだ投稿はありません</div>
+      <% else %>
+        <%= render 'public/shared/post_index', posts: @posts %>
+      <% end %>
+    </div>
+    <div>
+      <%= render 'public/shared/new_post_btn' %>
+    </div>
+
+  </div>
+</div>
+</div>

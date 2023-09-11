@@ -18,6 +18,8 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
     root to: "homes#top"
     get "/about" => "homes#about"
 
+    get "/mypage" => "homes#mypage"
+
     resources :shiros,  only: [:index, :show] do
       resources :shiro_favorites,   only: [:create, :destroy]
       resources :my_maps,           only: [:create, :destroy]

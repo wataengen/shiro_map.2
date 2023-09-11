@@ -12,14 +12,14 @@ class Public::SearchesController < ApplicationController
 
   def search_post_index
     @tag_list = Tag.all
-    @posts = Post.looks(params[:search], params[:word])
+    @posts = Post.looks(params[:search], params[:word]).sort_by{|post| -(post[:id])}
     @post_comment = PostComment.new
   end
 
   def search_tag_index
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.post.where(display_status: true)
+    @posts = @tag.post.where(display_status: true).sort_by{|post| -(post[:id])}
     @post_comment = PostComment.new
   end
 end

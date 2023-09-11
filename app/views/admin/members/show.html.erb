@@ -33,8 +33,10 @@
           </div>
         </div>
         <div class="col-3">
-          <%= link_to edit_admin_member_path(@member.id) do %>
-            <buttun class="btn btn-success">会員情報を編集する</buttun>
+          <% if params[:id] = current_member.id %>
+            <%= link_to edit_member_path(current_member.id) do %>
+              <buttun class="btn btn-success">編集する</buttun>
+            <% end %>
           <% end %>
         </div>
       </div>

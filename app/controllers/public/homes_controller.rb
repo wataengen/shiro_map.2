@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
 
   def top
-    @posts = Post.where(display_status: true)
+    @posts = Post.where(display_status: true).sort_by{|post| -(post[:id])}
     @post_comment = PostComment.new
   end
 

@@ -1,11 +1,28 @@
-<div>ニックネーム</div>
-　<div>
+<div class="row">
+  <div class="col-3">
+    ニックネーム
+  </div>
+  <div class="col-9">
     <%= member.nick_name %>
   </div>
-  <div>プロフィール</div>
-  <div>
+</div>
+<div class="row">
+  <div class="col-3">
+    プロフィール
+  </div>
+  <div class="col-9">
     <%= member.profile %>
   </div>
+</div>
+<div>
   <div>
-    
+    <%= link_to follows_member_path(member) do %>
+      フォロー<%= member.followers.count %>
+    <% end %>
   </div>
+  <div>
+    <%= link_to followers_member_path(member) do %>
+      フォロワー<%= member.followeds.count %>
+    <% end %>
+  </div>
+</div>

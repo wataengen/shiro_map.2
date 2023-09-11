@@ -1,8 +1,10 @@
 class Public::MembersController < ApplicationController
   def show
     @member = Member.find(params[:id])
-    @posts = Post.where(member_id: @member.id).where(display_status: true)
+    @posts = Post.where(member_id: @member.id).where(display_status: true).sort_by{|post| -(post[:id])}
     @post_comment = PostComment.new
+    @following_users = @member.following_members
+    @follower_users = @member.follower_members
   end
 
   def edit
@@ -28,6 +30,15 @@ class Public::MembersController < ApplicationController
     @member = Member.find(params[:id])
   end
 
+  def follows
+    members = Member.find(params[:id])
+    @members = members.following_members
+  end
+
+  def followers
+    members = Member.find(params[:id])
+    @members = members.follower_members
+  end
   private
   def member_params
     params.require(:member).permit(:nick_name, :profile, :email, :image)

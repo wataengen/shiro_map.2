@@ -4,7 +4,11 @@
       <%= image_tag post.image, size: "200x200" %>
     </div>
     <div>
-      <%= link_to post.member.nick_name, member_path(post.member.id) %>
+      <% if current_member == post.member %>
+        <%= link_to post.member.nick_name, mypage_path %>
+      <% else %>
+        <%= link_to post.member.nick_name, member_path(post.member.id) %>
+      <% end %>
     </div>
     <div>
       <%= post.post_text %>

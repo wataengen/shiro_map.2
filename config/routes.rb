@@ -17,7 +17,6 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
   scope module: :public do
     root to: "homes#top"
     get "/about" => "homes#about"
-
     get "/mypage" => "homes#mypage"
 
     resources :shiros,  only: [:index, :show] do
@@ -33,7 +32,9 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
         resources :my_maps,           only: [:index]
         get "members/confirm_quit" => "members#confirm_quit"
         patch "members/quit"       => "members#quit"
+        get :follows, :followers
       end
+      resource :relationships, only: [:create, :destroy]
     end
 
 

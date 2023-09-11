@@ -3,7 +3,7 @@ class Public::PostFavoritesController < ApplicationController
   def index
     @member = Member.find(params[:id])
     favorites = PostFavorite.where(member_id: @member.id).pluck(:post_id)
-    @post_favorites = Post.find(favorites)
+    @post_favorites = Post.find(favorites).sort_by{|post| -(post[:id].to_i)}
     @post_comment = PostComment.new
   end
   def create

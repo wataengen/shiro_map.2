@@ -6,7 +6,11 @@
         <% if @posts.blank? %>
           <div>まだ投稿はありません</div>
         <% else %>
-          <%= render 'public/shared/post_index', posts: @posts %>
+          <% if member_signed_in? %>
+            <%= render 'public/shared/post_index', posts: @followers_posts %>
+          <% else %>
+            <%= render 'public/shared/post_index', posts: @posts %>
+          <% end %>
         <% end %>
       </div>
       <div>

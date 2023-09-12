@@ -31,13 +31,13 @@ class Public::MembersController < ApplicationController
   end
 
   def follows
-    members = Member.find(params[:id])
-    @members = members.following_members
+    member = Member.find(params[:id])
+    @members = member.following_members
   end
 
   def followers
-    members = Member.find(params[:id])
-    @members = members.follower_members
+    member = Member.find(params[:id])
+    @members = member.follower_members
   end
   private
   def member_params

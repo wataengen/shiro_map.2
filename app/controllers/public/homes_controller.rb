@@ -2,6 +2,11 @@ class Public::HomesController < ApplicationController
 
   def top
     @posts = Post.where(display_status: true).sort_by{|post| -(post[:id])}
+    if member_signed_in?
+      @member = Member.find(current_member.id)
+      follows = @member.following_members
+      @followers_posts = Post.where(member_id: follows).where(display_status: true).sort_by{|post| -(post[:id])}
+    end
     @post_comment = PostComment.new
   end
 

@@ -16,8 +16,8 @@ class Public::PostsController < ApplicationController
     end
   end
 
-  def index
-    @posts = Post.where(member_id = current_member.id).sort_by{|post| -(post[:id].to_i)}
+  def draft_index
+    @posts = Post.where(member_id: current_member.id).where(display_status: false).sort_by{|post| -(post[:id].to_i)}
     @tag_list = Tag.all
   end
 

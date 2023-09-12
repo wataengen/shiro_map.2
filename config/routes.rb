@@ -33,6 +33,7 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
         get "members/confirm_quit" => "members#confirm_quit"
         patch "members/quit"       => "members#quit"
         get :follows, :followers
+        get "posts/draft_index" => "posts#draft_index"
       end
       resource :relationships, only: [:create, :destroy]
     end

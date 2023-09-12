@@ -24,15 +24,17 @@
       <div>
         <%= f.text_field :name, value: @tag_list %>
       </div>
-      <div>
-        <%= link_to edit_member_path(current_member.id) do %>
-          <buttun class="btn btn-success">プロフィールを編集する</buttun>
-        <% end %>
-      </div>
+
       <div>
         <%= f.submit '投稿する' %>
       </div>
       <% end %>
+      <div>
+        <%= link_to posts_draft_index_member_path(current_member) do %>
+          <buttun class="btn btn-success">下書き一覧を見る</buttun>
+        <% end %>
+      </div>
+
   </div>
 </div>
 </div>

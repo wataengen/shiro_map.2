@@ -23,7 +23,7 @@
       <% end %>
     </div>
     <div>
-      <%= post.post_text %>
+      <%= link_to post.post_text, post_path(post.id) %>
     </div>
     <div>
       <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), post_path(post.id) %>

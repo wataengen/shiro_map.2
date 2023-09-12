@@ -11,6 +11,7 @@ class Public::PostsController < ApplicationController
       post.save_tags(tag_list)
       redirect_to post_path(post.id)
     else
+      
       @post = Post.new
       render :new
     end
@@ -47,6 +48,6 @@ class Public::PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:member_id, :post_text, :display_status, :image)
+    params.require(:post).permit(:member_id, :post_text, :display_status, images: [])
   end
 end

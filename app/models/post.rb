@@ -6,7 +6,9 @@ class Post < ApplicationRecord
 
   belongs_to :member
 
-  has_one_attached :image
+  has_many_attached :images
+
+  validates :images, limit_image: true
 
   def save_tags(tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

@@ -3,7 +3,11 @@
   <div class="col-12">
     <div>画像</div>
     <div>
-      <%= image_tag @post.image, size: "200x200" %>
+      <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+          <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+        <% end %>
+      <% end %>
     </div>
     <div>コメント</div>
     <div>

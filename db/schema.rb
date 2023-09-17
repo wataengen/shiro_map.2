@@ -126,7 +126,9 @@ ActiveRecord::Schema.define(version: 2023_09_11_014947) do
   create_table "shiros", force: :cascade do |t|
     t.string "name", null: false
     t.text "detail", null: false
-    t.string "shiro_map", null: false
+    t.string "address", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
     t.boolean "display_status", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

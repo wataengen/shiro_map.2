@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
 
   def top
-    puts "作成したキー#{ENV['GOOGLE_MAPS_API_KEY']}"
+    @shiros = Shiro.where(display_status: true)
     @posts = Post.where(display_status: true).sort_by{|post| -(post[:id])}
     #ログイン前は公開済みの投稿が最新順に表示される
     if member_signed_in?

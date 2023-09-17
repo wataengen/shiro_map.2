@@ -5,13 +5,14 @@
       <div class="text-right mb-3">
         <%= link_to "+", new_admin_shiro_path, class: 'btn', style: 'background-color: #808080; color: white; mx-3; width:40px; height:40px;' %>
       </div>
+       <%= render '/layouts/shiro_map.html.erb' %>
 
       <table class="table">
         <thead>
           <th>画像</th>
           <th>城名</th>
           <th>城詳細</th>
-          <th>城マップ情報</th>
+          <th>城住所情報</th>
           <th>表示ステータス</th>
         </thead>
         <% if @shiros.blank? %>
@@ -29,7 +30,7 @@
                 <%= shiro.detail %>
               </td>
               <td>
-                <%= shiro.shiro_map %>
+                <%= shiro.address %>
               </td>
               <td>
                 <div class="col-md-9">

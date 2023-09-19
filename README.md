@@ -32,7 +32,11 @@
 お城巡りツアーや写真コンテストなど、さまざまな楽しい活動に参加することで、コミュニティの一員として楽しむことができます。
 ​
 ## 設計書
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1F7t2CsJrNkFoj6wGGrZ7iFZS61fZrvD21VY6h8XS02Q/edit#gid=1037276267
 
+アプリケーション詳細設計
+https://docs.google.com/spreadsheets/d/12k23RQXd9fxl-9kSvCedAnLqsE25nUN7oZ398y4L4To/edit#gid=549108681
 ​
 ## 開発環境
 - OS：Linux(CentOS)

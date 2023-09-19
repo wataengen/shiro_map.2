@@ -1,0 +1,42 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <%= form_with model: @post, "data-turbolinks": false do |f| %>
+      <h3>投稿編集</h3>
+      <div class="row">
+        <div class="col-3">画像</div>
+        <div class="col-6">
+          <%= f.file_field :image, accpet: "image/", multiple: true %>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3">コメント</div>
+        <div class="col-6">
+          <%= f.text_area :post_text, size: "60x5" %>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3">タグ</div>
+        <div class="col-6">
+          <%= f.text_field :name, value: @tag_list, size: 15 %>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3">
+          <%= f.label :display_status, "投稿を公開する" %>
+          <%= f.check_box :display_status %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4 mt-3">
+          <%= f.submit '変更を保存', class: "btn btn-success" %>
+        </div>
+      <% end %>
+        <div class="col-4 mt-3">
+          <%= link_to "投稿を削除", post_path, method: :delete, class: "btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

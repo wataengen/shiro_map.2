@@ -1,0 +1,27 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <%= render '/layouts/shiro_map.html.erb' %>
+      <div>
+        <h3>タイムライン</h3>
+        <div>
+          <% if @posts.blank? %>
+            <div>まだ投稿はありません</div>
+          <% else %>
+            <% if member_signed_in? %>
+              <% if @followers_posts.blank? %>
+                <div>フォロワーの投稿はまだありません</div>
+              <% else %>
+                <%= render 'public/shared/post_index', posts: @time_line_posts %>
+              <% end %>
+            <% else %>
+              <%= render 'public/shared/post_index', posts: @posts %>
+            <% end %>
+          <% end %>
+        </div>
+          <%= render 'public/shared/new_post_btn' %>
+      </div>
+
+    </div>
+  </div>
+</div>

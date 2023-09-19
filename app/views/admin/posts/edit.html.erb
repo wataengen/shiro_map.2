@@ -1,0 +1,41 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <%= form_with model: @post, url: admin_post_path(@post.id), "data-turbolinks": false do |f| %>
+    <h3>コメントの編集</h3>
+      <div>コメントID</div>
+      <div>
+        <<%= @post.id %>
+      </div>
+      <div>投稿日時</div>
+      <div>
+        <%= @post.created_at.strftime('%Y/%m/%d %H/%M/%S') %>
+      </div>
+      <div>ニックネーム</div>
+      <div>
+        <%= @post.member_id %>
+      </div>
+      <div>投稿文</div>
+      <div>
+        <%= f.text_field :post_text %>
+      </div>
+
+      <div class="row">
+          <div class="col-3">表示ステータス</div>
+          <div class="col-6">
+            <%= f.radio_button :display_status, :true, checked: true, class: "mt-2"  %>
+            <%= f.label :display_status, "表示" %>
+            <%= f.radio_button :display_status, :false %>
+            <%= f.label :display_status, "非表示" %>
+          </div>
+        </div>
+
+      <div>
+        <%= f.submit '変更を保存' %>
+      </div>
+
+    <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <h3>会員一覧　(全<%= @members.count %>件)</h3>
+
+      <table class="table">
+        <thead>
+          <th>会員ID</th>
+          <th>ニックネーム</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </thead>
+        <% if @members.blank? %>
+          <div>まだ会員はいません</div>
+        <% else %>
+          <% @members.each do |member| %>
+          <tbody>
+            <td><%= member.id %></td>
+            <td>
+              <%= link_to member.nick_name, admin_member_path(member.id) %>
+            </td>
+            <td><%= member.email %></td>
+            <td>
+              <% if member.is_deleted == true %>
+                <b class="text-secondary">退会</b>
+              <% else %>
+                <b class="text-success">有効</b>
+          　   <% end %>
+            </td>
+          </tbody>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

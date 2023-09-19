@@ -1,0 +1,13 @@
+<%= render 'search_bar' %>
+
+  <div>
+    <h4>検索結果一覧</h4>
+      <div>
+        <% if @posts.nil? %>
+          <div>まだ投稿はありません</div>
+        <% else %>
+          <%= render 'public/shared/post_index', posts: @posts %>
+        <% end %>
+      </div>
+  </div>
+

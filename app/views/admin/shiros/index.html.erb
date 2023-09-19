@@ -1,0 +1,54 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <h3>城一覧画面 (全<%= @shiros.count %>件)</h3>
+      <div class="text-right mb-3">
+        <%= link_to "+", new_admin_shiro_path, class: 'btn', style: 'background-color: #808080; color: white; mx-3; width:40px; height:40px;' %>
+      </div>
+       <%= render '/layouts/shiro_map.html.erb' %>
+
+      <table class="table">
+        <thead>
+          <th>画像</th>
+          <th>城名</th>
+          <th>城詳細</th>
+          <th>城住所情報</th>
+          <th>表示ステータス</th>
+        </thead>
+        <% if @shiros.blank? %>
+          <div>まだ登録されていません</div>
+        <% else %>
+          <% @shiros.each do |shiro| %>
+            <tbody>
+              <td>
+                <% if shiro.image.attached? %>
+                  <%= image_tag shiro.image, size: "15x15" %>
+                <% else %>
+                  <%= image_tag 'nagoyajou.png', size: "15x15" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to shiro.name, admin_shiro_path(shiro.id) %>
+              </td>
+              <td>
+                <%= shiro.detail %>
+              </td>
+              <td>
+                <%= shiro.address %>
+              </td>
+              <td>
+                <div class="col-md-9">
+                  <% if shiro.display_status == true %>
+                    <b class="text-success">表示</b>
+                  <% else %>
+                    <b class="text-secondary">非表示</b>
+          　       <% end %>
+                </div>
+              </td>
+          </tbody>
+        <% end %>
+      </table>
+    <% end %>
+    </div>
+  </div>
+</div>

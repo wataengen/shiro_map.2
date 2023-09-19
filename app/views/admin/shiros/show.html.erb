@@ -1,0 +1,77 @@
+<div class="container p-3">
+  <div class="row">
+  <div class="col-12">
+    <h3>城詳細画面</h3>
+    <div>
+      <% if shiro.image.attached? %>
+        <%= image_tag shiro.image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'nagoyajou.png', size: "200x200" %>
+      <% end %>
+    </div>
+    <div>
+      <div>マップ</div>
+      <script type="text/javascript">
+              function initMap() {
+                var test = {lat: <%= @shiro.latitude %>, lng: <%= @shiro.longitude %>};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 15,
+                            center: test
+                           });
+                var transitLayer = new google.maps.TransitLayer();
+                transitLayer.setMap(map);
+                var contentString = '住所：<%= @shiro.address %>';
+                var infowindow = new google.maps.InfoWindow({
+                      content: contentString
+                      });
+                var marker = new google.maps.Marker({
+                      position:test,
+                      map: map,
+                      title: contentString
+                      });
+                marker.addListener('click', function() {
+                      infowindow.open(map, marker);
+                      });
+                    }
+      </script>
+      <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
+            </script>
+            <style type="text/css">
+              #map { height: 200px;
+                     width: 70%;}
+            </style>
+            <div id="map"></div>
+    </div>
+    <div>城名</div>
+    <div>
+      <%= @shiro.name %>
+    </div>
+    <div>城詳細</div>
+    <div>
+      <%= @shiro.detail %>
+    </div>
+    <div>城住所情報</div>
+    <div>
+      <%= @shiro.address %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">表示ステータス</div>
+        <div class="col-md-9">
+          <% if @shiro.display_status == true %>
+            <b class="text-success">表示</b>
+          <% else %>
+            <b class="text-secondary">非表示</b>
+        　<% end %>
+      </div>
+    </div>
+    <div>
+      <%= link_to edit_admin_shiro_path(@shiro.id) do %>
+        <buttun class="btn btn-success">編集する</buttun>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+</div>

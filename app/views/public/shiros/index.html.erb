@@ -1,0 +1,37 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+       <% if @shiros.nil? %>
+
+        <h4>まだ登録されていません</h4>
+      <% else %>
+        <% @shiros.each do |shiro| %>
+        <div>
+          <div>
+            <% if shiro.image.attached? %>
+              <%= image_tag shiro.image, size: "200x200" %>
+            <% else %>
+              <%= image_tag 'nagoyajou.png', size: "200x200" %>
+            <% end %>
+          </div>
+          <div>城名</div>
+          <div>
+            <%= link_to shiro.name, shiro_path(shiro.id) %>
+          </div>
+          <div>城詳細</div>
+          <div>
+            <%= shiro.detail %>
+          </div>
+          <div>城住所情報</div>
+          <div>
+            <%= shiro.address %>
+          </div>
+
+
+        </div>
+        <% end %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

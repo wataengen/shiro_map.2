@@ -1,0 +1,32 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <%= render 'public/members/members_profile', member: @member %>
+      <div class="row">
+      <%= render 'public/members/members_bar', member: @member %>
+      <% if @shiro_favorites.blank? %>
+        <div>まだ行きたい城はありません</div>
+      <% else %>
+        <% @shiro_favorites.each do |shiro| %>
+          <div>
+            <div>
+              <% if shiro.image.attached? %>
+                <%= image_tag shiro.image, size: "200x200" %>
+              <% else %>
+                <%= image_tag 'nagoyajou.png', size: "200x200" %>
+              <% end %>
+            </div>
+          <div>
+            <%= shiro.name %>
+          </div>
+          <div>
+            <%= shiro.detail %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+      <%= render 'public/shared/new_post_btn' %>
+    </div>
+  </div>
+</div>

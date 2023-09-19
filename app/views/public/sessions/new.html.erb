@@ -5,31 +5,41 @@
 <h3>会員ログイン</h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <div>メールアドレス</div>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <div>パスワード（半角6文字以上）</div>
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="row mt-1">
+    <div class="col-4">メールアドレス</div>
+    <div class="col-6">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
+
+  <div class="row mt-1">
+    <div class="col-4">パスワード（半角6文字以上）</div>
+    <div class="col-6">
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
+  </div>
+
+
+  <div class="row mt-1">
+    <% if devise_mapping.rememberable? %>
+      <div class="col-4">
+        <%= f.check_box :remember_me %>
+        <%= f.label :ログインしたままにする %>
+      </div>
+    <% end %>
+
+    <div class="col-4">
+      <%= f.submit "ログイン", class: "btn btn-primary" %>
+    </div>
+    <div class="col-4">
+      <%= link_to members_guest_sign_in_path, method: :post do %>
+        <buttun class="btn btn-success">ゲストログイン（閲覧用）</buttun>
+      <% end %>
+    </div>
+  </div>
+
 <% end %>
-<div>
-  <%= link_to members_guest_sign_in_path, method: :post do %>
-    <buttun class="btn btn-success">ゲストログイン（閲覧用）</buttun>
-  <% end %>
-</div>
+
 <div>
   <%= render "public/shared/links" %>
 </div>

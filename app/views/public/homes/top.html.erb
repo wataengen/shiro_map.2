@@ -9,15 +9,17 @@
             <div>まだ投稿はありません</div>
           <% else %>
             <% if member_signed_in? %>
-              <%= render 'public/shared/post_index', posts: @followers_posts %>
+              <% if @followers_posts.blank? %>
+                <div>フォロワーの投稿はまだありません</div>
+              <% else %>
+                <%= render 'public/shared/post_index', posts: @time_line_posts %>
+              <% end %>
             <% else %>
               <%= render 'public/shared/post_index', posts: @posts %>
             <% end %>
           <% end %>
         </div>
-        <div>
           <%= render 'public/shared/new_post_btn' %>
-        </div>
       </div>
 
     </div>

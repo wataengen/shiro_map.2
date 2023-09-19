@@ -1,23 +1,16 @@
 <div class="container p-3">
   <div class="row">
-  <div class="col-12">
-    <div>
+    <div class="col-12">
       <%= render 'public/members/members_profile', member: @member %>
-    </div>
-    <div>
-      <%= render 'public/members/members_bar', member: @member %>
-    </div>
-    <div>
-      <% if @post_favorites.blank? %>
-        <div>まだいいねした投稿はありません</div>
-      <% else %>
-        <%= render 'public/shared/post_index', posts: @post_favorites %>
-      <% end %>
-    </div>
-    <div>
+      <div class="row">
+        <%= render 'public/members/members_bar', member: @member %>
+        <% if @post_favorites.blank? %>
+          <div>まだいいねした投稿はありません</div>
+        <% else %>
+          <%= render 'public/shared/post_index', posts: @post_favorites %>
+        <% end %>
+      </div>
       <%= render 'public/shared/new_post_btn' %>
     </div>
-
   </div>
-</div>
 </div>

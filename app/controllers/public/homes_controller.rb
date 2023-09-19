@@ -7,8 +7,10 @@ class Public::HomesController < ApplicationController
     if member_signed_in?
       @member = Member.find(current_member.id)
       follows = @member.following_members
-      @followers_posts = Post.where(member_id: follows).where(display_status: true).sort_by{|post| -(post[:id])}
-      #ログイン後はフォロー会員の投稿が最新順に表示される
+      @followers_posts = Post.where(member_id: follows).where(display_status: true)
+      @member_posts = Post.where(member_id: @member)
+      @time_line_posts = (@followers_posts + @member_posts).sort_by{|post| -(post[:id])}
+      #ログイン後はフォロー会員と自分の投稿が最新順に表示される
     end
     @post_comment = PostComment.new
   end

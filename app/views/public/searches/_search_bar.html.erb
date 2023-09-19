@@ -1,8 +1,31 @@
-<div class="form-inline">
+<div class="row">
+  <div>
+    <nav class="mb-2 navbar navbar-expand-lg navbar-dark">
+      <ul class="navbar-nav text-nowarp">
+        <li class="nav-item text-nowarp"><%= link_to "投稿検索", searches_search_post_index_path, class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "タグ検索", searches_search_tag_index_path, class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "城検索", searches_search_shiro_index_path, class: "btn text-secondary mr-3" %></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="form-inline">
     <%= form_with url: searches_search_post_index_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word, class: "form-control mr-sm-2 search-form", placeholder: "Search", id: nil %>
+      <%= f.text_field :word, class: "form-control mr-sm-2 search-form", placeholder: "検索", id: nil %>
       <%= button_tag type: "submit", class: "btn text-secondary my-2 my-sm-0" do %>
         <i class="fas fa-search"></i>
-   　　<% end %>
+ 　  　<% end %>
     <% end %>
+  </div>
+</div>
+
+  <div>
+    <h4>タグ</h4>
+      <div>
+        <% @tag_list.each do |list|%>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%=link_to list.name,searches_search_tag_index_path(tag_id: list.id) %>
+          <%="(#{list.post.where(display_status: true).count})" %>
+        <% end %>
+      </div>
   </div>

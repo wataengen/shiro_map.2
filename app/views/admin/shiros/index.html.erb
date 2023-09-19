@@ -21,7 +21,11 @@
           <% @shiros.each do |shiro| %>
             <tbody>
               <td>
-                <%= image_tag shiro.image, size: "15x15" %>
+                <% if shiro.image.attached? %>
+                  <%= image_tag shiro.image, size: "15x15" %>
+                <% else %>
+                  <%= image_tag 'nagoyajou.png', size: "15x15" %>
+                <% end %>
               </td>
               <td>
                 <%= link_to shiro.name, admin_shiro_path(shiro.id) %>

@@ -18,6 +18,9 @@ class Member < ApplicationRecord
   has_one_attached :icon_image
   has_one_attached :back_ground_image
 
+  validates :nick_name, presence: true, length: {maximum: 25}, uniqueness: true
+  validates :profile,   length: {maximum: 200}
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64

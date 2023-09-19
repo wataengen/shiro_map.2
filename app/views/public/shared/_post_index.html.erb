@@ -1,71 +1,111 @@
 <% posts.each do |post| %>
-  <div>
-    <div>
-      <% post.images.each do |image| %>
-       <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
-      <% end %>
-    </div>
-    <div>
-      <% if current_member == post.member %>
-        <%= link_to post.member.nick_name, mypage_path %>
-      <% else %>
-        <%= link_to post.member.nick_name, member_path(post.member.id) %>
-      <% end %>
-    </div>
-    <div>
-      <% if current_member != post.member %>
-        <% if member_signed_in? %>
-          <% if current_member.following?(post.member) %>
+  <div class="container p-3">
+    <div class="row">
+      <div class="col-12">
+        <div>
+          <% if post.images.attached? %>
+            <% post.images.each do |image| %>
+              <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="row">
+          <div>
+            <% if post.member.icon_image.attached? %>
+              <p><%= image_tag post.member.icon_image(20,20) %></p>
+            <% else %>
+              <P><%= image_tag 'sengoku_busyou_shiki.png', size: "20x20" %></P>
+            <% end %>
+          </div>
+          <div>
+            <% if current_member == post.member %>
+              <%= link_to post.member.nick_name, mypage_path %>
+            <% else %>
+              <%= link_to post.member.nick_name, member_path(post.member.id) %>
+            <% end %>
+          </div>
+          <div>
+            <% if member_signed_in? %>
+              <% if post.member == current_member %>
+              <% else %>
+                <% if current_member.following?(post.member) %>
+                <% else %>
+                  <%= link_to "フォローする", member_relationships_path(post.member.id), method: :post, class:"btn btn-success" %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <%= link_to "フォローする", member_relationships_path(post.member.id), method: :post, class:"btn btn-success" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9">
+            <%= link_to post.post_text, post_path(post.id) %>
+          </div>
+          <div class="col-3">
+            <% if member_signed_in? %>
+              <% if post.member_id == current_member.id %>
+                <%= link_to edit_post_path(post.id) do %>
+                  <buttun class="btn btn-dark">投稿を編集する</buttun>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+
+
+        <div>
+          <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), post_path(post.id) %>
+        </div>
+        <div>
+          <% if member_signed_in? %>
+            <% if post.post_favorited_by?(current_member) %>
+              <%= link_to post_post_favorites_path(post), method: :delete do %>
+                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+                <%= post.post_favorites.count %> いいね
+              <% end %>
+            <% else %>
+              <%= link_to post_post_favorites_path(post), method: :post do %>
+                <i class="fas fa-heart" aria-hidden="true"></i>
+              <%= post.post_favorites.count %> いいね
+            <% end %>
+          <% end %>
           <% else %>
-            <%= link_to "フォローする", member_relationships_path(post.member.id), method: :post, class:"btn btn-success" %>
+            <%= link_to post_post_favorites_path(post), method: :post do %>
+              <i class="fas fa-heart" aria-hidden="true"></i>
+              <%= post.post_favorites.count %> いいね
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to "フォローする", member_relationships_path(post.member.id), method: :post, class:"btn btn-success" %>
-        <% end %>
-      <% end %>
-    </div>
-    <div>
-      <%= link_to post.post_text, post_path(post.id) %>
-    </div>
-    <div>
-      <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), post_path(post.id) %>
-    </div>
-    <div>
-      <% if member_signed_in? %>
-        <% if post.post_favorited_by?(current_member) %>
-          <%= link_to post_post_favorites_path(post), method: :delete do %>
-            <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-            <%= post.post_favorites.count %> いいね
+        </div>
+        <div>
+          <p>コメント件数：<%= post.post_comments.count %></p>
+          <% post.post_comments.each do |post_comment| %>
+            <% if post_comment.member.icon_image.attached? %>
+              <p><%= image_tag post_comment.member.icon_image(20,20) %></p>
+              <% else %>
+              <P><%= image_tag 'sengoku_busyou_shiki.png', size: "20x20" %></P>
+            <% end %>
+            <%= post_comment.member.nick_name %>
+            <%= link_to post_comment_path(post_comment) do %>
+              <%= post_comment.comment %>
+            <% end %>
+            <%= post_comment.created_at.strftime('%Y/%m/%d') %>
           <% end %>
-        <% else %>
-          <%= link_to post_post_favorites_path(post), method: :post do %>
-            <i class="fas fa-heart" aria-hidden="true"></i>
-            <%= post.post_favorites.count %> いいね
+        </div>
+        <div>
+          <%= form_with model: [post, @post_comment] do |f| %>
+            <div class="row">
+              <div class="col-6">
+                <%= f.text_area :comment, size: "60x2", placeholder: "コメントをここに" %>
+              </div>
+              <div class="col-3">
+                <%= f.submit "送信する", class: "btn btn-secondary"  %>
+              </div>
+            </div>
           <% end %>
-        <% end %>
-      <% else %>
-        <%= link_to post_post_favorites_path(post), method: :post do %>
-            <i class="fas fa-heart" aria-hidden="true"></i>
-            <%= post.post_favorites.count %> いいね
-          <% end %>
-        <% end %>
-    </div>
-    <div>
-      <p>コメント件数：<%= post.post_comments.count %></p>
-      <% post.post_comments.each do |post_comment| %>
-        <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
-        <%= post_comment.member.nick_name %>
-        <%= link_to post_comment_path(post_comment) do %>
-          <%= post_comment.comment %>
-        <% end %>
-        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
-      <% end %>
-    </div>
-    <div>
-      <%= form_with model: [post, @post_comment] do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-        <%= f.submit "送信する" %>
-      <% end %>
+        </div>
+      </div>
     </div>
   </div>
 <% end %>

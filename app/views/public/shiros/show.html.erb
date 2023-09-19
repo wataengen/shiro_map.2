@@ -4,7 +4,11 @@
         <div>
 
           <div>
-            <%= image_tag @shiro.image, size: "200x200" %>
+            <% if @shiro.image.attached? %>
+              <%= image_tag @shiro.image, size: "200x200" %>
+            <% else %>
+              <%= image_tag 'nagoyajou.png', size: "200x200" %>
+            <% end %>
           </div>
           <div>城名</div>
           <div>
@@ -57,19 +61,18 @@
         <div>
           <% if member_signed_in? %>
             <% if @shiro.shiro_favorited_by?(current_member) %>
-              <%= link_to shiro_shiro_favorite_path(@shiro), method: :delete do %>
-                <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+              <%= link_to shiro_shiro_favorites_path(@shiro), method: :delete do %>
+                <i class="fa-solid fa-star" aria-hidden="true" style="color: yellow;"></i>
                 <%= @shiro.shiro_favorites.count %> 行きたい城を解除
               <% end %>
             <% else %>
               <%= link_to shiro_shiro_favorites_path(@shiro), method: :post do %>
-                <i class="fas fa-heart" aria-hidden="true"></i>
+                <i class="fa-regular fa-star" aria-hidden="true"></i>
                 <%= @shiro.shiro_favorites.count %> 行きたい城に追加
               <% end %>
             <% end %>
           <% end %>
-          </div>
-
+        </div>
     </div>
   </div>
 </div>

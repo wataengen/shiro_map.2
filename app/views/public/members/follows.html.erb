@@ -10,12 +10,14 @@
           <th></th>
         </thead>
         <% if @members.blank? %>
-          <div>まだフォローはいません</div>
+          <tbody>
+            <td>まだフォロワーはいません</td>
+          </tbody>
         <% else %>
           <% @members.each do |member| %>
           <tbody>
             <td>
-              <%= link_to member.nick_name, admin_member_path(member.id) %>
+              <%= link_to member.nick_name, member_path(member.id) %>
             </td>
             <td>
              <%= member.nick_name %>

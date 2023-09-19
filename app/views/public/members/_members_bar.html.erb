@@ -1,19 +1,21 @@
-
-
-<div class="col-lg-7 offset-lg-1 col-md-2 offset-md-7 col-sm-2 offset-sm-5 col-6">
-  <div>
-    <nav class="mb-2 float-right navbar navbar-expand-lg navbar-dark">
-      <button class="navbar-toggler mt-3" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarDropdown">
-        <ul class="navbar-nav horizontal-for-more-than-md">
-          <li class="nav-item"><%= link_to "投稿一覧", member_path(member.id), class: "btn text-secondary mr-3" %></li>
-          <li class="nav-item"><%= link_to "訪れた城", my_maps_path(member.id), class: "btn text-secondary mr-3" %></li>
-          <li class="nav-item"><%= link_to "行きたい城", shiro_favorites_path(member.id), class: "btn text-secondary mr-3" %></li>
-          <li class="nav-item"><%= link_to "いいね", post_favorites_path(member.id), class: "btn text-secondary mr-3, 'data-turbolinks': false" %></li>
-        </ul>
-      </div>
+<div class="col-12">
+  <% if member == current_member %>
+    <nav class="mb-2 navbar navbar-expand-lg navbar-dark">
+      <ul class="navbar-nav text-nowarp">
+        <li class="nav-item text-nowarp"><%= link_to "マイページ", mypage_path, class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "いいね", post_favorites_path(current_member.id), class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "訪れた城", my_maps_path(current_member.id), class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "行きたい城", shiro_favorites_path(current_member.id), class: "btn text-secondary mr-3" %></li>
+      </ul>
     </nav>
-  </div>
+  <% else %>
+    <nav class="mb-2 navbar navbar-expand-lg navbar-dark">
+      <ul class="navbar-nav text-nowarp">
+        <li class="nav-item text-nowarp"><%= link_to "投稿一覧", member_path(member.id), class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "いいね", post_favorites_path(member.id), class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "訪れた城", my_maps_path(member.id), class: "btn text-secondary mr-3" %></li>
+        <li class="nav-item text-nowarp"><%= link_to "行きたい城", shiro_favorites_path(member.id), class: "btn text-secondary mr-3" %></li>
+      </ul>
+    </nav>
+  <% end %>
 </div>

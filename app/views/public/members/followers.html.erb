@@ -11,22 +11,24 @@
           <th></th>
         </thead>
         <% if @members.blank? %>
-          <div>まだフォロワーはいません</div>
+        <tbody>
+          <td>まだフォロワーはいません</td>
+        </tbody>
         <% else %>
           <% @members.each do |member| %>
           <tbody>
             <td>
-              <%= link_to member.nick_name, admin_member_path(member.id) %>
+              <%= link_to member.nick_name, member_path(member.id) %>
             </td>
             <td>
              <%= member.nick_name %>
             </td>
             <td>
-              <% if current_member != @member %>
-                <% if current_member.following?(@member) %>
-                  <%= link_to "フォロー外す", member_relationships_path(@member.id), method: :delete, class: "btn btn-danger" %>
+              <% if member = current_member %>
+                <% if current_member.following?(member) %>
+                  <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn btn-danger" %>
                 <% else %>
-                  <%= link_to "フォローする", member_relationships_path(@member.id), method: :post, class:"btn btn-success" %>
+                  <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class:"btn btn-success" %>
                 <% end %>
               <% end %>
             </td>

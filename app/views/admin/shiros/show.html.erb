@@ -3,7 +3,11 @@
   <div class="col-12">
     <h3>城詳細画面</h3>
     <div>
-      <%= image_tag @shiro.image, size: "200x200" %>
+      <% if shiro.image.attached? %>
+        <%= image_tag shiro.image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'nagoyajou.png', size: "200x200" %>
+      <% end %>
     </div>
     <div>
       <div>マップ</div>

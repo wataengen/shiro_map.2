@@ -8,7 +8,11 @@
         <% @shiros.each do |shiro| %>
         <div>
           <div>
-            <%= image_tag shiro.image, size: "200x200" %>
+            <% if shiro.image.attached? %>
+              <%= image_tag shiro.image, size: "200x200" %>
+            <% else %>
+              <%= image_tag 'nagoyajou.png', size: "200x200" %>
+            <% end %>
           </div>
           <div>城名</div>
           <div>

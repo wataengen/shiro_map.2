@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   has_many_attached :images
 
   validates :images, limit_image: true
+  validates :post_text, presence: true, length: {maximum: 200}
 
   def save_tags(tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

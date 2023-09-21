@@ -38,6 +38,6 @@ class Admin::ShirosController < ApplicationController
   private
 
   def shiro_params
-    params.require(:shiro).permit(:name, :detail, :address, :latitude, :longitude, :display_status, :image)
+    params.require(:shiro).permit(:name, :detail, :address, :latitude, :longitude, :display_status, images: [])
   end
 end

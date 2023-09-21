@@ -7,9 +7,7 @@
         <% if @my_maps.blank?%>
           <div>まだ訪れた城はありません</div>
         <% else %>
-          <% @my_maps.each do |my_maps| %>
-            <%= render 'public/shared/shiro_index', shiros: @my_maps %>
-          <% end %>
+          <%= render 'public/shared/shiro_index', shiros: @my_maps %>
         <% end %>
       </div>
       <%= render 'public/shared/new_post_btn' %>

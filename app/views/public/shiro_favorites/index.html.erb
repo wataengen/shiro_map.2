@@ -7,23 +7,7 @@
       <% if @shiro_favorites.blank? %>
         <div>まだ行きたい城はありません</div>
       <% else %>
-        <% @shiro_favorites.each do |shiro| %>
-          <div>
-            <div>
-              <% if shiro.image.attached? %>
-                <%= image_tag shiro.image, size: "200x200" %>
-              <% else %>
-                <%= image_tag 'nagoyajou.png', size: "200x200" %>
-              <% end %>
-            </div>
-          <div>
-            <%= shiro.name %>
-          </div>
-          <div>
-            <%= shiro.detail %>
-          </div>
-        </div>
-        <% end %>
+       <%= render 'public/shared/shiro_index', shiros: @shiro_favorites %>
       <% end %>
     </div>
       <%= render 'public/shared/new_post_btn' %>

@@ -1,0 +1,25 @@
+<% shiros.each do |shiro| %>
+  <div>
+    <div>
+      <% if shiro.images.attached? %>
+        <% shiro.images.each do |image| %>
+          <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+        <% end %>
+      <% else %>
+        <%= image_tag 'nagoyajou.png', size: "200x200" %>
+      <% end %>
+    </div>
+    <div>城名</div>
+    <div>
+      <%= link_to shiro.name, shiro_path(shiro.id) %>
+    </div>
+    <div>城詳細</div>
+    <div>
+      <%= shiro.detail %>
+    </div>
+    <div>城住所情報</div>
+    <div>
+      <%= shiro.address %>
+    </div>
+  </div>
+<% end %>

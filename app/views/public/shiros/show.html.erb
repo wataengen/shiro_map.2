@@ -4,8 +4,10 @@
         <div>
 
           <div>
-            <% if @shiro.image.attached? %>
-              <%= image_tag @shiro.image, size: "200x200" %>
+            <% if @shiro.images.attached? %>
+              <% @shiro.images.each do |image| %>
+                <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+              <% end %>
             <% else %>
               <%= image_tag 'nagoyajou.png', size: "200x200" %>
             <% end %>

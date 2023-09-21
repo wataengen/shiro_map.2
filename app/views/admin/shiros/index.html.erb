@@ -21,8 +21,10 @@
           <% @shiros.each do |shiro| %>
             <tbody>
               <td>
-                <% if shiro.image.attached? %>
-                  <%= image_tag shiro.image, size: "15x15" %>
+                <% if shiro.images.attached? %>
+                  <% shiro.images.each do |image| %>
+                    <%= image_tag image.variant(resize_to_limit: [15, 15]) %>
+                  <% end %>
                 <% else %>
                   <%= image_tag 'nagoyajou.png', size: "15x15" %>
                 <% end %>

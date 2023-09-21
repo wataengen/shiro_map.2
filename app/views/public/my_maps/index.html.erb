@@ -8,9 +8,7 @@
           <div>まだ訪れた城はありません</div>
         <% else %>
           <% @my_maps.each do |my_maps| %>
-            <div>
-              
-            </div>
+            <%= render 'public/shared/shiro_index', shiros: @my_maps %>
           <% end %>
         <% end %>
       </div>

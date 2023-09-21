@@ -1,8 +1,9 @@
 class Shiro < ApplicationRecord
   has_many   :shiro_favorites, dependent: :destroy
   has_many   :my_maps, dependent: :destroy
-  has_one_attached :image
+  has_many_attached :images
 
+  validates :images,  limit_image: true
   validates :name,    presence: true, length: {maximum: 25}
   validates :detail,  presence: true, length: {maximum: 500}
   validates :address, presence: true, length: {maximum: 200}

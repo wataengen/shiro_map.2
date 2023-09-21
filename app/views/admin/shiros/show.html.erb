@@ -8,7 +8,7 @@
           <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
         <% end %>
       <% else %>
-        <%= image_tag 'nagoyajou.png', size: "200x200" %>
+        <%= image_tag asset_path("nagoyajou.png"), size: "200x200" %>
       <% end %>
     </div>
     <div>

@@ -11,9 +11,9 @@
       <div class="row">
         <div>
           <% if @post.member.icon_image.attached? %>
-            <p><%= image_tag @post.member.icon_image, size: "100x100" %></p>
+            <p><%= image_tag @post.member.icon_image, size: "20x20" %></p>
           <% else %>
-            <P><%= image_tag 'sengoku_busyou_shiki.png', size: "100x100" %></P>
+            <P><%= image_tag 'sengoku_busyou_shiki.png', size: "20x20" %></P>
           <% end %>
         </div>
         <div>

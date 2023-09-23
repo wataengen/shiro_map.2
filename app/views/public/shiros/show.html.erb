@@ -1,13 +1,16 @@
 <div class="container p-3">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 bg-light">
         <div>
-
           <div>
             <% if @shiro.images.attached? %>
-              <% @shiro.images.each do |image| %>
-                <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
-              <% end %>
+              <div class="row">
+                <% @shiro.images.each do |image| %>
+                  <div class="col">
+                    <%= image_tag image, class: "object-fit-cover", size: "150x100" %>
+                  </div>
+                <% end %>
+              </div>
             <% else %>
               <%= image_tag 'nagoyajou.png', size: "200x200" %>
             <% end %>
@@ -45,7 +48,7 @@
                     src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
             </script>
             <style type="text/css">
-              #map { height: 200px;
+              #map { height: 600px;
                      width: 70%;}
             </style>
             <div id="map"></div>
@@ -60,21 +63,7 @@
             <%= @shiro.address %>
           </div>
         </div>
-        <div>
-          <% if member_signed_in? %>
-            <% if @shiro.shiro_favorited_by?(current_member) %>
-              <%= link_to shiro_shiro_favorites_path(@shiro), method: :delete do %>
-                <i class="fa-solid fa-star" aria-hidden="true" style="color: yellow;"></i>
-                <%= @shiro.shiro_favorites.count %> 行きたい城を解除
-              <% end %>
-            <% else %>
-              <%= link_to shiro_shiro_favorites_path(@shiro), method: :post do %>
-                <i class="fa-regular fa-star" aria-hidden="true"></i>
-                <%= @shiro.shiro_favorites.count %> 行きたい城に追加
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
+        <%= render 'public/shared/shiro_favorite_btn', shiro: @shiro %>
     </div>
   </div>
 </div>

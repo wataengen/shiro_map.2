@@ -26,7 +26,7 @@ class Public::HomesController < ApplicationController
 
   def mypage
     @member = current_member
-    @posts = Post.where(member_id: @member.id).where(display_status: true)
+    @posts = Post.where(member_id: @member.id).where(display_status: true).sort_by{|post| -(post[:id])}
     @post_comment = PostComment.new
   end
 end

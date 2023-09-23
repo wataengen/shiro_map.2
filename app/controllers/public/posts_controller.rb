@@ -4,14 +4,14 @@ class Public::PostsController < ApplicationController
     @tag_list = @post.tags.pluck(:name).join(',')
   end
   def create
-    post = Post.new(post_params)
+    post = Post.new
     post.member_id = current_member.id
     tag_list = params[:post][:name].split(',')
     if post.save
       post.save_tags(tag_list)
       redirect_to post_path(post.id)
     else
-      
+
       @post = Post.new
       render :new
     end

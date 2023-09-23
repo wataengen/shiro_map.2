@@ -11,16 +11,19 @@
 
         const test = [];
         const contentString = [];
+        const shiroShow = [];
         const marker = [];
 
         <% @shiros.each do |shiro| %>
             test[<%= shiro.id %>] = {lat: <%= shiro.latitude %>, lng: <%= shiro.longitude %>};
             contentString[<%= shiro.id %>] = '城名：<%= shiro.name %>';
+            shiroShow[<%= shiro.id %>] = '<%= shiro_path(shiro.id) %>'
 
             marker[<%= shiro.id %>] = new google.maps.Marker({
                     position: test[<%= shiro.id %>],
                     map: map,
                     title: contentString[<%= shiro.id %>],
+                    url: shiroShow[<%= shiro.id %>],
                     });
 
             marker[<%= shiro.id %>].addListener('click', function() {

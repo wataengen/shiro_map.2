@@ -54,8 +54,8 @@ class Public::PostsController < ApplicationController
   end
 
   def is_matching_login_member
-    member = Member.find(params[:id])
-    unless member.id == current_member.id
+    post = Post.find(params[:id])
+    unless post.member.id == current_member.id
       redirect_to root_path
     end
   end

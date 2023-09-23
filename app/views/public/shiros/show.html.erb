@@ -15,10 +15,13 @@
               <%= image_tag 'nagoyajou.png', size: "200x200" %>
             <% end %>
           </div>
-          <div>城名</div>
-          <div>
+          <div class="row">
+            <div class="col-3">城名：</div>
+            <div class="col-9">
               <%= @shiro.name %>
+            </div>
           </div>
+
           <div>
             <div>マップ</div>
             <script type="text/javascript">
@@ -49,19 +52,26 @@
             </script>
             <style type="text/css">
               #map { height: 600px;
-                     width: 70%;}
+                     width: 90%;
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;}
             </style>
             <div id="map"></div>
           </div>
+          <div class="row">
+            <div class="col-3">城詳細：</div>
+            <div class="col-9">
+              <%= @shiro.detail %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">城住所情報：</div>
+            <div class="col-9">
+              <%= @shiro.address %>
+            </div>
+          </div>
 
-          <div>城詳細</div>
-          <div>
-            <%= @shiro.detail %>
-          </div>
-          <div>城住所情報</div>
-          <div>
-            <%= @shiro.address %>
-          </div>
         </div>
         <%= render 'public/shared/shiro_favorite_btn', shiro: @shiro %>
     </div>

@@ -47,8 +47,8 @@ class Public::PostCommentsController < ApplicationController
   end
 
   def is_matching_login_member
-    member = Member.find(params[:id])
-    unless member.id == current_member.id
+    post_comment = PostComment.find(params[:id])
+    unless post_comment.member.id == current_member.id
       redirect_to root_path
     end
   end

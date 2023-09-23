@@ -29,7 +29,7 @@
         </div>
       </div>
       <div>
-        <%= @post.post_text %>
+        <%= link_to @post.post_text, post_path(@post) %>
       </div>
       <div>
         <% @post_tags.each do |tag| %>
@@ -39,17 +39,29 @@
       </div>
       <%= render 'public/shared/favorite_btn', post: @post %>
       <div>コメント</div>
-      <div>
-        <div>
-          <% if @post_comment.member.icon_image.attached? %>
-            <p><%= image_tag @post_comment.member.icon_image, size: "20x20" %></p>
-          <% else %>
-            <P><%= image_tag 'sengoku_busyou_shiki.png', size: "20x20" %></P>
-          <% end %>
+      <div class="container">
+        <div class="card">
+          <div class="row">
+            <% if @post_comment.member.icon_image.attached? %>
+              <div>
+                <%= image_tag @post_comment.member.icon_image, size: "20x20" %>
+              </div>
+            <% else %>
+              <div>
+                <%= image_tag 'sengoku_busyou_shiki.png', size: "20x20" %>
+              </div>
+            <% end %>
+            <div>
+              <%= @post_comment.member.nick_name %>
+            </div>
+          </div>
+          <div>
+            <%= @post_comment.comment %>
+          </div>
+          <div>
+            <%= @post_comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
         </div>
-        <%= @post_comment.member.nick_name %>
-        <%= @post_comment.created_at.strftime('%Y/%m/%d') %>
-        <%= @post_comment.comment %>
       </div>
       <div>
         <% if member_signed_in? %>

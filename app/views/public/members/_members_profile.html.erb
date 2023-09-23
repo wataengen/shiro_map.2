@@ -8,9 +8,9 @@
   <div class="col-9">
     <div>
       <% if member.icon_image.attached? %>
-        <p><%= image_tag member.icon_image(100,100) %></p>
+        <p><%= image_tag member.icon_image, class: "rounded-circle border border-secondary", size: "100x100" %></p>
       <% else %>
-        <P><%= image_tag 'sengoku_busyou_shiki.png', size: "100x100" %></P>
+        <P><%= image_tag 'sengoku_busyou_shiki.png', class: "rounded-circle border border-secondary", size: "100x100" %></P>
       <% end %>
     </div>
     <div class="row">

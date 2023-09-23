@@ -9,7 +9,7 @@
             <div>まだ投稿はありません</div>
           <% else %>
             <% if member_signed_in? %>
-              <% if @followers_posts.blank? %>
+              <% if @time_line_posts.blank? %>
                 <div>フォロワーの投稿はまだありません</div>
               <% else %>
                 <%= render 'public/shared/post_index', posts: @time_line_posts %>

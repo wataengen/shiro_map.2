@@ -1,0 +1,12 @@
+header {
+  width: 100%;
+  background-color: #C0C0C0;
+}
+footer {
+  width: 100%;
+  background-color: #C0C0C0;
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}

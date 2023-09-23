@@ -1,5 +1,6 @@
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_member!
+  before_action :is_matching_login_member, only: [:edit, :update]
   def create
     post = Post.find(params[:post_id])
     comment = current_member.post_comments.new(post_comment_params)
@@ -43,5 +44,12 @@ class Public::PostCommentsController < ApplicationController
   private
   def post_comment_params
     params.require(:post_comment).permit(:comment)
+  end
+
+  def is_matching_login_member
+    member = Member.find(params[:id])
+    unless member.id == current_member.id
+      redirect_to root_path
+    end
   end
 end

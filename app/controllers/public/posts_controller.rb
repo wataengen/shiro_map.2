@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :is_matching_login_member, only: [:edit, :update]
   def new
     @post = Post.new
     @tag_list = @post.tags.pluck(:name).join(',')
@@ -47,7 +48,15 @@ class Public::PostsController < ApplicationController
   end
 
   private
+
   def post_params
     params.require(:post).permit(:member_id, :post_text, :display_status, images: [])
+  end
+
+  def is_matching_login_member
+    member = Member.find(params[:id])
+    unless member.id == current_member.id
+      redirect_to root_path
+    end
   end
 end

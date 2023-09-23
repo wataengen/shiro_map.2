@@ -1,4 +1,5 @@
 class Public::MembersController < ApplicationController
+  before_action :is_matching_login_member, only: [:edit, :update]
   def show
     @member = Member.find(params[:id])
     @posts = Post.where(member_id: @member.id).where(display_status: true).sort_by{|post| -(post[:id])}
@@ -40,7 +41,15 @@ class Public::MembersController < ApplicationController
     @members = member.follower_members
   end
   private
+
   def member_params
     params.require(:member).permit(:nick_name, :icon_image, :back_ground_image, :profile, :email, :image)
+  end
+
+  def is_matching_login_member
+    member = Member.find(params[:id])
+    unless member.id == current_member.id
+      redirect_to root_path
+    end
   end
 end

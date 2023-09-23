@@ -15,10 +15,10 @@ class Public::PostCommentsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post_comment = PostComment.find(params[:id])
+    @post = Post.find(@post_comment.post_id)
     @tag_list = @post.tags.pluck(:name).join(',')
     @post_tags = @post.tags
-    @post_comment = PostComment.find(params[:id])
   end
 
   def edit

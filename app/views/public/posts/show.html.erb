@@ -4,16 +4,16 @@
       <div>
         <% if @post.images.attached? %>
           <% @post.images.each do |image| %>
-            <%= image_tag image.variant(resize_to_limit: [200, 200]) %>
+            <%= image_tag image, class: "object-fit-cover", size: "200x200" %>
           <% end %>
         <% end %>
       </div>
       <div class="row">
         <div>
           <% if @post.member.icon_image.attached? %>
-            <p><%= image_tag @post.member.icon_image(20,20) %></p>
+            <p><%= image_tag @post.member.icon_image, size: "100x100" %></p>
           <% else %>
-            <P><%= image_tag 'sengoku_busyou_shiki.png', size: "20x20" %></P>
+            <P><%= image_tag 'sengoku_busyou_shiki.png', size: "100x100" %></P>
           <% end %>
         </div>
         <div>

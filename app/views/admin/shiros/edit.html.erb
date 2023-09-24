@@ -3,38 +3,43 @@
   <div class="col-12">
     <%= form_with model: @shiro, url: admin_shiro_path(@shiro.id), "data-turbolinks": false do |f| %>
     <h3>城編集</h3>
-      <div>城画像</div>
-      <div>
+    <div class="row">
+      <div class="col-3">城画像</div>
+      <div class="col-6">
         <%= f.file_field :images, accpet: "image/", multiple: true %>
       </div>
-      <div>城名</div>
-      <div>
-        <%= f.text_field :name %>
+    </div>
+    <div class="row mt-3">
+      <div class="col-3">城名</div>
+      <div class="col-6">
+        <%= f.text_field :name, size: 15 %>
       </div>
-      <div>城詳細</div>
-      <div>
-        <%= f.text_area :detail %>
+    </div>
+    <div class="row mt-3">
+      <div class="col-3">城詳細</div>
+      <div class="col-6">
+        <%= f.text_area :detail, size: "60x5" %>
       </div>
-      <div>城住所情報</div>
-      <div>
-        <%= f.text_field :address %>
+    </div>
+    <div class="row mt-3">
+      <div class="col-3">城住所情報</div>
+      <div class="col-6">
+        <%= f.text_field :address, size: 50 %>
       </div>
-
-      <div class="row">
-          <div class="col-3">表示ステータス</div>
-          <div class="col-6">
-            <%= f.radio_button :display_status, :true, checked: true, class: "mt-2"  %>
-            <%= f.label :display_status, "表示" %>
-            <%= f.radio_button :display_status, :false %>
-            <%= f.label :display_status, "非表示" %>
-          </div>
+    </div>
+      <div class="row mt-3">
+        <div class="col-3">表示ステータス</div>
+        <div class="col-6">
+          <%= f.radio_button :display_status, :true, checked: true, class: "mt-2"  %>
+          <%= f.label :display_status, "表示" %>
+          <%= f.radio_button :display_status, :false %>
+          <%= f.label :display_status, "非表示" %>
         </div>
-
-      <div>
-        <%= f.submit '変更を保存' %>
+        <div class="col-3">
+          <%= f.submit '変更を保存', class: "btn btn-success" %>
+        </div>
       </div>
-
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>

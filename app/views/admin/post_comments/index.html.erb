@@ -4,18 +4,28 @@
       <h3>コメント一覧画面 コメント件数：<%= @post_comments.count %></h3>
       <table class="table">
         <thead>
-          <th></th>
+          <th>アイコン</th>
           <th>コメントメンバー</th>
           <th>コメント日時</th>
           <th>コメント内容</th>
         </thead>
         <% if @post_comments.blank? %>
-          <div>まだ登録されていません</div>
+          <tbody>
+            <td>
+              まだ登録されていません
+            </td>
+          </tbody>
         <% else %>
           <% @post_comments.each do |post_comment| %>
           <tbody>
             <td>
-              <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
+              <div>
+                <% if @post_comment.member.icon_image.attached? %>
+                  <p><%= image_tag @post_comment.member.icon_image, class: "rounded-circle border border-secondary", size: "50x50" %></p>
+                <% else %>
+                  <P><%= image_tag 'sengoku_busyou_shiki.png', class: "rounded-circle border border-secondary", size: "50x50" %></P>
+                <% end %>
+              </div>
             </td>
             <td>
               <%= post_comment.member.nick_name %>

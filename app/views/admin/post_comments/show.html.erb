@@ -1,42 +1,63 @@
 
 <div class="container p-3">
   <div class="row">
-  <div class="col-12">
-    <div>画像</div>
-    <div>
-      <%= image_tag @post.image, size: "200x200" %>
-    </div>
-    <div>コメント</div>
-    <div>
-      <%= @post.post_text %>
-    </div>
-    <div>
-      <% @post_tags.each do |tag| %>
-      <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to tag.name,searches_search_tag_index_path(tag_id: tag.id) %>
-      <% end %>
-    </div>
-    <div>
-          <p><%#= image_tag post_comment.member.get_profile_image(100,100) %></p>
+    <div class="col-12">
+      <h3>コメント詳細</h3>
+      <div class="row">
+        <div>投稿</div>
+        <div>
+          <%= @post.post_text %>
+        </div>
+      </div>
+      <div>
+        <% @post_tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= link_to tag.name,searches_search_tag_index_path(tag_id: tag.id) %>
+        <% end %>
+      </div>
+      <div class="row mt-1">
+        <div class="col-3">
+          <% if @post_comment.member.icon_image.attached? %>
+            <p><%= image_tag @post_comment.member.icon_image, class: "rounded-circle border border-secondary", size: "50x50" %></p>
+          <% else %>
+            <P><%= image_tag 'sengoku_busyou_shiki.png', class: "rounded-circle border border-secondary", size: "50x50" %></P>
+          <% end %>
+        </div>
+        <div class="col-6">
           <%= @post_comment.member.nick_name %>
-          <%= @post_comment.created_at.strftime('%Y/%m/%d') %>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-3">
+          コメント：
+        </div>
+        <div class="col-6">
           <%= @post_comment.comment %>
-    </div>
-    <div class="row">
-      <div class="col-md-3">表示ステータス</div>
-        <div class="col-md-9">
-          <% if @shiro.display_status == true %>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-3">
+          投稿日時：
+        </div>
+        <div class="col-6">
+          <%= @post_comment.created_at.strftime('%Y/%m/%d') %>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-md-3">コメントステータス：</div>
+        <div class="col-md-3">
+          <% if @post_comment.display_status == true %>
             <b class="text-success">表示</b>
           <% else %>
             <b class="text-secondary">非表示</b>
-        　<% end %>
+          <% end %>
+        </div>
+        <div class="col-md-3">
+          <%= link_to edit_admin_post_comment_path(@post_comment.id) do %>
+            <buttun class="btn btn-success">コメントを編集する</buttun>
+          <% end %>
+        </div>
       </div>
     </div>
-    <div>
-      <%= link_to edit_admin_post_comment_path(@post_comment.id) do %>
-        <buttun class="btn btn-success">コメントを編集する</buttun>
-      <% end %>
-    </div>
   </div>
-</div>
 </div>

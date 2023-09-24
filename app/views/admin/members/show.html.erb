@@ -3,27 +3,41 @@
     <div class="col-12">
       <div class="row">
         <div class="col-9">
+          <div>
+            <% if @member.icon_image.attached? %>
+              <p><%= image_tag @member.icon_image, class: "rounded-circle border border-secondary", size: "100x100" %></p>
+            <% else %>
+              <P><%= image_tag 'sengoku_busyou_shiki.png', class: "rounded-circle border border-secondary", size: "100x100" %></P>
+            <% end %>
+          </div>
           <div class="row">
-            <div>会員ID</div>
-            <div>
+            <div class="col-3">会員ID：</div>
+            <div class="col-3">
               <%= @member.id %>
             </div>
           </div>
-          <div class="row">
-            <div>ニックネーム</div>
-            <div>
+          <div class="row mt-1">
+            <div class="col-3">ニックネーム：</div>
+            <div class="col-3">
               <%= @member.nick_name %>
             </div>
           </div>
-          <div class="row">
-            <div>メールアドレス</div>
-            <div>
+          <div class="row mt-1">
+            <div class="col-3">メールアドレス：</div>
+            <div class="col-3">
               <%= @member.email %>
             </div>
           </div>
-          <div class="row">
-            <div>ステータス</div>
-            <div>
+          <div class="row mt-1">
+            <div class="col-3">プロフィール：</div>
+            <div class="col-3">
+              <%= @member.profile %>
+            </div>
+          </div>
+
+          <div class="row mt-1">
+            <div class="col-3">ステータス：</div>
+            <div class="col-3">
               <% if @member.is_deleted == true %>
                 <b class="text-secondary">退会</b>
               <% else %>
@@ -33,11 +47,9 @@
           </div>
         </div>
         <div class="col-3">
-          <% if params[:id] = current_member.id %>
-            <%= link_to edit_member_path(current_member.id) do %>
+            <%= link_to edit_admin_member_path(@member) do %>
               <buttun class="btn btn-success">編集する</buttun>
             <% end %>
-          <% end %>
         </div>
       </div>
     </div>

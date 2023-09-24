@@ -10,3 +10,6 @@ footer {
 .object-fit-cover {
   object-fit: cover;
 }
+.text-nowarp {
+  white-space: nowrap;
+}

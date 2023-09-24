@@ -5,7 +5,6 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.text     :post_text,      null: false
       t.boolean  :display_status, null: false, default: true
       t.boolean  :draft_status,   null: false, default: false
-      t.datetime :draft_time,     null: false, precision: 6
 
       t.timestamps
     end

@@ -125,12 +125,15 @@ Shiro.find_or_create_by!(name: "鶴ヶ城") do |shiro|
 end
 
 puts "shiroデータの読み込み完了"
-puts "管理者、会員データの読み込み開始"
+puts "管理者データの読み込み開始"
 
 Admin.create!(
    email: 'sample@admin.com',
    password: ENV['ADMIN_PASSWORD']
   )
+
+puts "管理者データの読み込み完了"
+puts "会員データの読み込み開始"
 
 Member.create!(
    nick_name: "わたる1",
@@ -144,12 +147,81 @@ Member.create!(
    password: ENV['MEMBER2_PASSWORD']
 )
 
-Member.create!(
-   nick_name: "わたる3",
-   email: 'wataru3@sample.com',
-   password: ENV['MEMBER3_PASSWORD']
-)
 
-puts "管理者、会員データの読み込み完了"
+puts "会員データの読み込み完了"
+puts "会員投稿データの読み込み開始"
+Post.find_or_create_by!(id: 1) do |post|
+  post.id = 1,
+  post.member_id = 1,
+  post.post_text = "ShiroMapデプロイ開始！"
+end
+Post.find_or_create_by!(id: 2) do |post|
+  post.id = 2,
+  post.member_id = 1,
+  post.post_text = "ユーザー1テスト用投稿1"
+end
+Post.find_or_create_by!(id: 3) do |post|
+  post.id = 3,
+  post.member_id = 1,
+  post.post_text = "ユーザー1テスト用投稿2"
+end
+Post.find_or_create_by!(id: 4) do |post|
+  post.id = 4,
+  post.member_id = 1,
+  post.post_text = "ユーザー1下書きテスト1",
+  post.draft_status = false
+end
+Post.find_or_create_by!(id: 5) do |post|
+  post.id = 5,
+  post.member_id = 1,
+  post.post_text = "ユーザー1下書きテスト2",
+  post.draft_status = false
+end
+Post.find_or_create_by!(id: 6) do |post|
+  post.id = 6,
+  post.member_id = 2,
+  post.post_text = "ユーザー2テスト用投稿1"
+end
+Post.find_or_create_by!(id: 7) do |post|
+  post.id = 7,
+  post.member_id = 2,
+  post.post_text = "ユーザー2テスト用投稿2"
+end
+Post.find_or_create_by!(id: 8) do |post|
+  post.id = 8,
+  post.member_id = 2,
+  post.post_text = "ユーザー2下書きテスト1",
+  post.draft_status = false
+end
+Post.find_or_create_by!(id: 9) do |post|
+  post.id = 9,
+  post.member_id = 2,
+  post.post_text = "ユーザー2下書きテスト2",
+  post.draft_status = false
+end
+Post.find_or_create_by!(id: 10) do |post|
+  post.id = 10,
+  post.member_id = 1,
+  post.post_text = "ユーザー1テスト用投稿3"
+end
+Post.find_or_create_by!(id: 11) do |post|
+  post.id = 11,
+  post.member_id = 2,
+  post.post_text = "ユーザー2テスト用投稿3"
+end
+Post.find_or_create_by!(id: 12) do |post|
+  post.id = 12,
+  post.member_id = 1,
+  post.post_text = "ユーザー1下書きテスト3",
+  post.draft_status = false
+end
+Post.find_or_create_by!(id: 13) do |post|
+  post.id = 13,
+  post.member_id = 2,
+  post.post_text = "ユーザー2下書きテスト3",
+  post.draft_status = false
+end
+
+puts "会員投稿データの読み込み完了"
 
 puts "seedの実行が完了しました"

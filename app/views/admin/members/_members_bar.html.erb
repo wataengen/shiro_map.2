@@ -1,0 +1,8 @@
+<div class="col-12 bg-light">
+  <nav class="mb-2 navbar navbar-expand-lg navbar-dark bg-light">
+    <ul class="navbar-nav text-nowarp">
+      <li class="nav-item text-nowarp"><%= link_to "投稿一覧", admin_member_path(@member.id), class: "btn text-dark mr-3" %></li>
+      <li class="nav-item text-nowarp"><%= link_to "コメント一覧", admin_post_comment_path(@member.id), class: "btn text-dark mr-3" %></li>
+    </ul>
+  </nav>
+</div>

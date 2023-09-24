@@ -21,7 +21,7 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
 
     resources :shiros,  only: [:index, :show] do
       resource :shiro_favorites,   only: [:create, :destroy]
-      resources :my_maps,           only: [:create, :destroy]
+      resource :my_maps,           only: [:create, :destroy]
     end
 
     resources :members, only: [:show, :edit, :update] do
@@ -55,7 +55,11 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
     root to: "shiros#index"
     resources :shiros,   except: [:destroy]
     resources :posts,    only:   [:index, :show, :edit, :update]
-    resources :members,  only:   [:index, :show, :edit, :update]
+    resources :members,  only:   [:index, :show, :edit, :update] do
+      member do
+        get 'show_post_comments'
+      end
+    end
     resources :post_comments,  only:   [:index, :show, :edit, :update]
 
     get 'search' => "searches#search_top"

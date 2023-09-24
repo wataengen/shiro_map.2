@@ -20,7 +20,11 @@ class Admin::MembersController < ApplicationController
       @shiro = Shiro.find(params[:id])
       render :edit
     end
-
+  end
+  
+  def show_post_comment
+    @member = Member.find(params[:id])
+    
   end
 
   private

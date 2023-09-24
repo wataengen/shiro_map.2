@@ -4,6 +4,8 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer  :member_id,      null: false
       t.text     :post_text,      null: false
       t.boolean  :display_status, null: false, default: true
+      t.boolean  :draft_status,   null: false, default: false
+      t.datetime :draft_time,     null: false, default: ""
 
       t.timestamps
     end

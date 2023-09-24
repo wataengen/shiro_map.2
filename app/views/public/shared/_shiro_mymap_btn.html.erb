@@ -1,0 +1,15 @@
+<div>
+  <% if member_signed_in? %>
+    <% if shiro.mymaped_by?(current_member) %>
+      <%= link_to shiro_my_maps_path(shiro), method: :delete do %>
+        <i class="fa-solid fa-flag" aria-hidden="true"></i>
+        <%= shiro.my_maps.count %> 訪れた城を解除
+      <% end %>
+    <% else %>
+      <%= link_to shiro_my_maps_path(shiro), method: :post do %>
+        <i class="fa-regular fa-flag" aria-hidden="true"></i>
+        <%= shiro.my_maps.count %> 訪れた城に追加
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

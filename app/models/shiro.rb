@@ -20,4 +20,8 @@ class Shiro < ApplicationRecord
   def shiro_favorited_by?(member)
     shiro_favorites.exists?(member_id: member.id)
   end
+  
+  def mymaped_by?(member)
+    my_maps.exists?(member_id: member.id)
+  end
 end

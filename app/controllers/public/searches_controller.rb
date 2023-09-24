@@ -7,7 +7,7 @@ class Public::SearchesController < ApplicationController
 
   def search_shiro_index
     @tag_list = Tag.all
-    @shiros = Shiro.looks(params[:search], params[:word]).where(draft_status: true)
+    @shiros = Shiro.looks(params[:search], params[:word]).where(display_status: true)
   end
 
   def search_post_index

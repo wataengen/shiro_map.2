@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
 
   def top
-    @shiros = Shiro.where(draft_status: true)
+    @shiros = Shiro.where(display_status: true)
     @posts = Post.where(draft_status: true).sort_by{|post| -(post[:id])}
     #ログイン前は公開済みの投稿が投稿順に表示される
     if member_signed_in?

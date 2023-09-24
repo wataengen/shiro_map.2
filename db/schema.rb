@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 2023_09_11_014947) do
     t.text "post_text", null: false
     t.boolean "display_status", default: true, null: false
     t.boolean "draft_status", default: false, null: false
-    t.datetime "draft_time", null: false
+    t.datetime "draft_time", precision: 6, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

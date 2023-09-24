@@ -16,7 +16,9 @@
           <th>表示ステータス</th>
         </thead>
         <% if @shiros.blank? %>
-          <div>まだ登録されていません</div>
+        <tbody>
+          <td>まだ登録されていません</td>
+        </tbody>
         <% else %>
           <% @shiros.each do |shiro| %>
             <tbody>

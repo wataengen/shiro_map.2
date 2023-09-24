@@ -2,7 +2,7 @@ class Public::MembersController < ApplicationController
   before_action :is_matching_login_member, only: [:edit, :update]
   def show
     @member = Member.find(params[:id])
-    @posts = Post.where(member_id: @member.id).where(display_status: true).sort_by{|post| -(post[:id])}
+    @posts = Post.where(member_id: @member.id).where(draft_status: true).sort_by{|post| -(post[:id])}
     @post_comment = PostComment.new
     @following_users = @member.following_members
     @follower_users = @member.follower_members
@@ -43,7 +43,7 @@ class Public::MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:nick_name, :icon_image, :back_ground_image, :profile, :email, :image)
+    params.require(:member).permit(:nick_name, :icon_image, :back_ground_image, :profile, :email)
   end
 
   def is_matching_login_member

@@ -11,7 +11,9 @@
           <th>ステータス</th>
         </thead>
         <% if @posts.blank? %>
-          <div>まだ投稿はありません</div>
+          <tbody>
+            <td>まだ投稿されていません</td>
+          </tbody>
         <% else %>
           <% @posts.each do |post| %>
           <tbody>

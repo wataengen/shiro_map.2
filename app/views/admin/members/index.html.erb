@@ -12,7 +12,9 @@
           <th>ステータス</th>
         </thead>
         <% if @members.blank? %>
-          <div>まだ会員はいません</div>
+          <tbody>
+            <td>まだ会員はいません</td>
+          </tbody>
         <% else %>
           <% @members.each do |member| %>
           <tbody>

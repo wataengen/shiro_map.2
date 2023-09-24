@@ -20,8 +20,8 @@
           <tbody>
             <td>
               <div>
-                <% if @post_comment.member.icon_image.attached? %>
-                  <p><%= image_tag @post_comment.member.icon_image, class: "rounded-circle border border-secondary", size: "50x50" %></p>
+                <% if post_comment.member.icon_image.attached? %>
+                  <p><%= image_tag post_comment.member.icon_image, class: "rounded-circle border border-secondary", size: "50x50" %></p>
                 <% else %>
                   <P><%= image_tag 'sengoku_busyou_shiki.png', class: "rounded-circle border border-secondary", size: "50x50" %></P>
                 <% end %>

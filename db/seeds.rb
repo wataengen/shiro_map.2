@@ -133,9 +133,21 @@ Admin.create!(
   )
 
 Member.create!(
-   nick_name: "わたる",
-   email: 'wataru@sample.com',
-   password: ENV['MEMBER_PASSWORD']
+   nick_name: "わたる1",
+   email: 'wataru1@sample.com',
+   password: ENV['MEMBER1_PASSWORD']
+)
+
+Member.create!(
+   nick_name: "わたる2",
+   email: 'wataru2@sample.com',
+   password: ENV['MEMBER2_PASSWORD']
+)
+
+Member.create!(
+   nick_name: "わたる3",
+   email: 'wataru3@sample.com',
+   password: ENV['MEMBER3_PASSWORD']
 )
 
 puts "管理者、会員データの読み込み完了"

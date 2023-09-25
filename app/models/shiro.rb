@@ -12,15 +12,15 @@ class Shiro < ApplicationRecord
   after_validation :geocode, if: :address_changed?
 
   def self.looks(search, word, include_inactive = false)
-    shiros = where("name LIKE ?", "%#{word}%")
+    shiros = where("name LIKE ? OR detail LIKE ? OR address LIKE ?", "%#{word}%", "%#{word}%", "%#{word}%")
     shiros = shiros.where(display_status: true) unless include_inactive
-    shiros
+
   end
 
   def shiro_favorited_by?(member)
     shiro_favorites.exists?(member_id: member.id)
   end
-  
+
   def mymaped_by?(member)
     my_maps.exists?(member_id: member.id)
   end

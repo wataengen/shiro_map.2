@@ -14,9 +14,14 @@
           </div>
         </div>
         <% if @shiros.blank? %>
-          <div>城情報はありません</div>
+          <h4>城情報はありません</h4>
         <% else %>
-          <%= render 'public/shared/shiro_index', shiros: @shiros %>
+          <% if params[:word].blank? %>
+            <%= render 'public/shared/shiro_index', shiros: @shiros %>
+          <% else %>
+            <h4>「<%= params[:word] %>」の検索結果</h4>
+            <%= render 'public/shared/shiro_index', shiros: @shiros %>
+          <% end %>
         <% end %>
     </div>
   </div>

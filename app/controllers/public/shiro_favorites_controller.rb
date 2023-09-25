@@ -1,5 +1,4 @@
 class Public::ShiroFavoritesController < ApplicationController
-  before_action :authenticate_member!
   def index
     @member = Member.find(params[:id])
     favorites = ShiroFavorite.where(member_id: @member.id).pluck(:shiro_id)

@@ -2,7 +2,7 @@ class Public::MembersController < ApplicationController
   before_action :is_matching_login_member, only: [:edit, :update]
   def show
     @member = Member.find(params[:id])
-    @posts = Post.where(member_id: @member.id).where(draft_status: false, display_status: true).sort_by{|post| -(post[:id])}
+    @posts = Post.where(member_id: @member.id).where(draft_status: true, display_status: true).sort_by{|post| -(post[:id])}
     @post_comment = PostComment.new
     @following_users = @member.following_members
     @follower_users = @member.follower_members

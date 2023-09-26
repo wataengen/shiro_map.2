@@ -4,7 +4,7 @@ class Public::PostFavoritesController < ApplicationController
     @member = Member.find(params[:id])
     favorites = PostFavorite.where(member_id: @member.id).pluck(:post_id)
     post = Post.where(id: favorites)
-    @post_favorites = post.where(draft_status: false, display_status: true).sort_by{|post| -(post[:id].to_i)}
+    @post_favorites = post.where(draft_status: true, display_status: true).sort_by{|post| -(post[:id].to_i)}
     @post_comment = PostComment.new
   end
   def create

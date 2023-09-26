@@ -32,12 +32,12 @@
     <div>
       <div>
         <%= link_to follows_member_path(member) do %>
-          フォロー<%= member.followers.count %>
+          フォロー<span id="follow_count"><%= member.followers.count %></span>
         <% end %>
       </div>
       <div>
         <%= link_to followers_member_path(member) do %>
-          フォロワー<%= member.followeds.count %>
+          フォロワー<span id="follower_count"><%= member.followeds.count %></span>
         <% end %>
       </div>
     </div>
@@ -47,15 +47,8 @@
       <%= link_to edit_member_path(current_member.id) do %>
         <buttun class="btn btn-info">プロフィールを編集する</buttun>
       <% end %>
-
     <% else %>
-      <% if member_signed_in? %>
-        <% if current_member.following?(member) %>
-          <%= link_to "フォロー外す", member_relationships_path(member.id), method: :delete, class: "btn btn-danger" %>
-        <% else %>
-          <%= link_to "フォローする", member_relationships_path(member.id), method: :post, class: "btn btn-success" %>
-        <% end %>
-      <% end %>
+      <%= render 'public/members/follow_btn', member: member %>
     <% end %>
   </div>
 </div>

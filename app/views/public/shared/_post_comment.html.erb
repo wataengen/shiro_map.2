@@ -34,7 +34,7 @@
         </div>
         <% if post_comment.member == current_member %>
           <div class="col">
-            <%= link_to "コメントを削除" , post_post_comment_path(post, post_comment), class: "btn btn-sm btn-danger" , method: :delete , remote:true, data: {"turbolinks" => false} %>
+            <%= link_to "コメントを削除" , post_post_comment_path(post, post_comment), class: "btn btn-sm btn-danger", method: :delete, remote:true, data: {"turbolinks" => false} %>
           </div>
         <% end %>
       </div>

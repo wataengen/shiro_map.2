@@ -29,6 +29,6 @@ class Admin::MembersController < ApplicationController
 
   private
   def member_params
-    params.require(:member).permit(:nick_name, :email, :is_deleted)
+    params.require(:member).permit(:nick_name, :profile, :email, :is_deleted)
   end
 end

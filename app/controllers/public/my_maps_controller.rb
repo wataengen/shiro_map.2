@@ -6,17 +6,15 @@ class Public::MyMapsController < ApplicationController
   end
 
   def create
-    shiro = Shiro.find(params[:shiro_id])
-    my_map = current_member.my_maps.new(shiro_id: shiro.id, comment: "")
+    @shiro = Shiro.find(params[:shiro_id])
+    my_map = current_member.my_maps.new(shiro_id: @shiro.id, comment: "")
     my_map.save
-    redirect_to request.referer
   end
 
   def destroy
-    shiro = Shiro.find(params[:shiro_id])
-    my_map = current_member.my_maps.find_by(shiro_id: shiro.id)
+    @shiro = Shiro.find(params[:shiro_id])
+    my_map = current_member.my_maps.find_by(shiro_id: @shiro.id)
     my_map.destroy
-    redirect_to request.referer
   end
 
 end

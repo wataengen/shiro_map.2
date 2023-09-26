@@ -2,14 +2,10 @@ class Public::PostCommentsController < ApplicationController
   before_action :authenticate_member!
   before_action :is_matching_login_member, only: [:edit, :update]
   def create
-    post = Post.find(params[:post_id])
+    @post = Post.find(params[:post_id])
     comment = current_member.post_comments.new(post_comment_params)
-    comment.post_id = post.id
-    if comment.save
-      redirect_to request.referer
-    else
-      redirect_to request.referer
-    end
+    comment.post_id = @post.id
+    comment.save
   end
 
   def show
@@ -36,6 +32,12 @@ class Public::PostCommentsController < ApplicationController
       @post_comment = PostComment.find(params[:id])
       render :edit
     end
+  end
+
+  def destroy
+    @post_comment = PostComment.find(params[:id]).destroy
+    @post_comment.destroy
+    @post = Post.find(params[:post_id])
   end
 
   private

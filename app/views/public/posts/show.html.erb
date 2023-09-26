@@ -51,7 +51,8 @@
         <% end %>
       </div>
       <%= render 'public/shared/favorite_btn', post: @post %>
-      <%= render 'public/shared/post_comment', post: @post, post_comment: @post_comment %>
+      <%= render 'public/shared/post_comment', post: @post %>
+      <%= render 'public/shared/post_comment_form', post: @post, post_comment: @post_comment %>
     </div>
   </div>
 </div>

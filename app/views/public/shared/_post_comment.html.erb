@@ -1,5 +1,5 @@
-<div>
-  <p>コメント件数：<%= post.post_comments.count %></p>
+<div id="post_comment_<%= post.id %>">
+  <p>コメント件数：<span id="comment_count"><%= post.post_comments.count %></span></p>
   <div class="container">
     <% post.post_comments.each do |post_comment| %>
     <div class="card">
@@ -28,24 +28,19 @@
           <%= post_comment.comment %>
         <% end %>
       </div>
-      <div>
-        <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+      <div class="row">
+        <div class="col">
+          <%= post_comment.created_at.strftime('%Y/%m/%d') %>
+        </div>
+        <% if post_comment.member == current_member %>
+          <div class="col">
+            <%= link_to "コメントを削除" , post_post_comment_path(post, post_comment), class: "btn btn-sm btn-danger" , method: :delete , remote:true, data: {"turbolinks" => false} %>
+          </div>
+        <% end %>
       </div>
+
     </div>
 
     <% end %>
   </div>
-</div>
-
-<div>
-  <%= form_with model: [post, post_comment] do |f| %>
-    <div class="row mt-1">
-      <div class="col-9">
-        <%= f.text_area :comment, size: "60x2", placeholder: "コメントをここに" %>
-      </div>
-      <div class="col-3">
-        <%= f.submit "送信する", class: "btn btn-secondary"  %>
-      </div>
-    </div>
-  <% end %>
 </div>

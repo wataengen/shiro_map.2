@@ -1,12 +1,12 @@
-<div>
+<div id="shiro_favorite_btn_<%= shiro.id %>">
   <% if member_signed_in? %>
     <% if shiro.shiro_favorited_by?(current_member) %>
-      <%= link_to shiro_shiro_favorites_path(shiro), method: :delete do %>
+      <%= link_to shiro_shiro_favorites_path(shiro), method: :delete, remote: true, data: {"turbolinks" => false} do %>
         <i class="fa-solid fa-star" aria-hidden="true" style="color: yellow;"></i>
         <%= shiro.shiro_favorites.count %> 行きたい城を解除
       <% end %>
     <% else %>
-      <%= link_to shiro_shiro_favorites_path(shiro), method: :post do %>
+      <%= link_to shiro_shiro_favorites_path(shiro), method: :post, remote: true, data: {"turbolinks" => false} do %>
         <i class="fa-regular fa-star" aria-hidden="true"></i>
         <%= shiro.shiro_favorites.count %> 行きたい城に追加
       <% end %>

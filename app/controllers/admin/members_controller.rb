@@ -21,10 +21,10 @@ class Admin::MembersController < ApplicationController
       render :edit
     end
   end
-  
+
   def show_post_comment
     @member = Member.find(params[:id])
-    
+
   end
 
   private

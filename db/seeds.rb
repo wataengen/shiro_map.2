@@ -169,13 +169,13 @@ Post.find_or_create_by!(id: 4) do |post|
   post.id = 4,
   post.member_id = 1,
   post.post_text = "ユーザー1下書きテスト1",
-  post.draft_status = false
+  post.draft_status = true
 end
 Post.find_or_create_by!(id: 5) do |post|
   post.id = 5,
   post.member_id = 1,
   post.post_text = "ユーザー1下書きテスト2",
-  post.draft_status = false
+  post.draft_status = true
 end
 Post.find_or_create_by!(id: 6) do |post|
   post.id = 6,
@@ -191,13 +191,13 @@ Post.find_or_create_by!(id: 8) do |post|
   post.id = 8,
   post.member_id = 2,
   post.post_text = "ユーザー2下書きテスト1",
-  post.draft_status = false
+  post.draft_status = true
 end
 Post.find_or_create_by!(id: 9) do |post|
   post.id = 9,
   post.member_id = 2,
   post.post_text = "ユーザー2下書きテスト2",
-  post.draft_status = false
+  post.draft_status = true
 end
 Post.find_or_create_by!(id: 10) do |post|
   post.id = 10,
@@ -213,13 +213,13 @@ Post.find_or_create_by!(id: 12) do |post|
   post.id = 12,
   post.member_id = 1,
   post.post_text = "ユーザー1下書きテスト3",
-  post.draft_status = false
+  post.draft_status = true
 end
 Post.find_or_create_by!(id: 13) do |post|
   post.id = 13,
   post.member_id = 2,
   post.post_text = "ユーザー2下書きテスト3",
-  post.draft_status = false
+  post.draft_status = true
 end
 
 puts "会員投稿データの読み込み完了"

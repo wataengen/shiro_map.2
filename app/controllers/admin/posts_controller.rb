@@ -1,7 +1,7 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @posts = Post.where(draft_status: true)
+    @posts = Post.where(draft_status: false)
   end
   def show
     @post = Post.find(params[:id])

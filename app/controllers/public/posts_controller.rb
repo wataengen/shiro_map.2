@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
   end
 
   def draft_index
-    @posts = Post.where(member_id: current_member.id).where(draft_status: true).sort_by{|post| -(post[:id].to_i)}
+    @posts = Post.where(member_id: current_member.id).where(display_status: true, draft_status: true) .sort_by{|post| -(post[:id].to_i)}
     @tag_list = Tag.all
   end
 
@@ -47,10 +47,21 @@ class Public::PostsController < ApplicationController
     end
   end
 
+  def delet_post
+    post =Post.find(params[:post_id])
+    if post.update(display_status: false)
+      redirect_to mypage_path
+    else
+      @post = Post.find(params[:id])
+      @tag_list = @post.tags.pluck(:name).join(',')
+      render :edit
+    end
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:member_id, :post_text, :display_status, images: [])
+    params.require(:post).permit(:member_id, :post_text, :draft_status, :display_status, images: [])
   end
 
   def is_matching_login_member

@@ -40,6 +40,7 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
 
 
     resources :posts do
+      get "delet_post"  =>  "posts#delet_post"
       resources :post_comments,     only: [:create, :destroy]
       resource :post_favorites,    only: [:create, :destroy]
     end

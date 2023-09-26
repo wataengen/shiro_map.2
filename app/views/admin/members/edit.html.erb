@@ -33,10 +33,10 @@
     <div class="row mt-1">
       <div class="col-3">退会ステータス：</div>
       <div class="col-6">
-        <%= f.radio_button :display_status, :true, checked: true, class: "mt-2"  %>
-        <%= f.label :display_status, "有効" %>
-        <%= f.radio_button :display_status, :false %>
-        <%= f.label :display_status, "退会" %>
+        <%= f.radio_button :is_deleted, :false, checked: true, class: "mt-2"  %>
+        <%= f.label :is_deleted, "有効" %>
+        <%= f.radio_button :is_deleted, :true %>
+        <%= f.label :is_deleted, "退会" %>
       </div>
       <div class="col-3">
         <%= f.submit '変更を保存', class: "btn btn-success" %>

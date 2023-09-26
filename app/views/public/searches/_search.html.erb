@@ -15,7 +15,7 @@
     <% @tag_list.each do |list|%>
       <i class="fa-sharp fa-solid fa-tag"></i>
       <%=link_to list.name,searches_search_tag_index_path(tag_id: list.id) %>
-        <%="(#{list.post.where(display_status: true).count})" %>
+        <%="(#{list.post.where(draft_status: true).where(display_status: true).count})" %>
       <% end %>
   </div>
 </div>

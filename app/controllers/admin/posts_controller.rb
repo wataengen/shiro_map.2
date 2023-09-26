@@ -1,7 +1,7 @@
 class Admin::PostsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @posts = Post.where(draft_status: false)
+    @posts = Post.where(draft_status: true)
   end
   def show
     @post = Post.find(params[:id])
@@ -19,7 +19,7 @@ class Admin::PostsController < ApplicationController
       render :edit
     end
   end
-  
+
   private
   def post_params
     params.require(:post).permit(:member_id, :add_tag, :post_text, :display_status, images: [] )

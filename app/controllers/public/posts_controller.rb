@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
   end
 
   def draft_index
-    @posts = Post.where(member_id: current_member.id).where(display_status: false, draft_status: true) .sort_by{|post| -(post[:id].to_i)}
+    @posts = Post.where(member_id: current_member.id).where(display_status: true, draft_status: false) .sort_by{|post| -(post[:id].to_i)}
     @tag_list = Tag.all
   end
 

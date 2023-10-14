@@ -15,6 +15,9 @@ class Member < ApplicationRecord
   has_many :following_members, through: :followers, source: :followed
   has_many :follower_members,  through: :followeds, source: :follower
 
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+
   has_one_attached :icon_image
   has_one_attached :back_ground_image
 

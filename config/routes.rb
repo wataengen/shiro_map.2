@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'rooms/show'
+  end
 devise_for :members,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -36,6 +39,9 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
         get "posts/draft_index" => "posts#draft_index"
       end
       resource :relationships, only: [:create, :destroy]
+      
+      resources :messages, only: [:create]
+      resources :rooms, only: [:create,:show]
     end
 
 

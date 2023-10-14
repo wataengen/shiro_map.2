@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_11_014947) do
+ActiveRecord::Schema.define(version: 2023_10_14_111421) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2023_09_11_014947) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
@@ -62,6 +62,15 @@ ActiveRecord::Schema.define(version: 2023_09_11_014947) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_entries_on_member_id"
+    t.index ["room_id"], name: "index_entries_on_room_id"
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -75,6 +84,16 @@ ActiveRecord::Schema.define(version: 2023_09_11_014947) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "room_id", null: false
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_messages_on_member_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
   end
 
   create_table "my_maps", force: :cascade do |t|
@@ -117,6 +136,13 @@ ActiveRecord::Schema.define(version: 2023_09_11_014947) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_rooms_on_member_id"
+  end
+
   create_table "shiro_favorites", force: :cascade do |t|
     t.integer "member_id", null: false
     t.integer "shiro_id", null: false
@@ -146,4 +172,9 @@ ActiveRecord::Schema.define(version: 2023_09_11_014947) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "add_tags", "posts"
   add_foreign_key "add_tags", "tags"
+  add_foreign_key "entries", "members"
+  add_foreign_key "entries", "rooms"
+  add_foreign_key "messages", "members"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "rooms", "members"
 end

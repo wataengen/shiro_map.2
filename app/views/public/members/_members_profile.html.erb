@@ -6,7 +6,7 @@
 
 <div class="row bg-light">
   <div class="col-9">
-    <div>
+    <div class="mt-2 ms-1">
       <% if member.icon_image.attached? %>
         <p><%= image_tag member.icon_image, class: "rounded-circle border border-secondary", size: "100x100" %></p>
       <% else %>
@@ -42,13 +42,17 @@
       </div>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-3 mt-3">
     <% if member == current_member %>
       <%= link_to edit_member_path(current_member.id) do %>
         <buttun class="btn btn-info">プロフィールを編集する</buttun>
       <% end %>
     <% else %>
+    <div class="row">
+      <%= render 'public/members/dm_btn', member: member %>
       <%= render 'public/members/follow_btn', member: member %>
+    </div>
+
     <% end %>
   </div>
 </div>

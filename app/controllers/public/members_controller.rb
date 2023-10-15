@@ -8,11 +8,11 @@ class Public::MembersController < ApplicationController
     @follower_users = @member.follower_members
 
     # DM機能の用の記述
-    @current_member_entry=Entry.where(member_id: current_member.id)
-    @member_entry=Entry.where(member_id: @member.id)
+    current_member_entry=Entry.where(member_id: current_member.id)
+    member_entry=Entry.where(member_id: @member.id)
     unless @member == current_member
-      @current_member_entry.each do |cme|
-        @member_entry.each do |me|
+      current_member_entry.each do |cme|
+        member_entry.each do |me|
           if cme.room_id == me.room_id then
             @is_room = true
             @room_id = cme.room_id

@@ -1,0 +1,2 @@
+$("textfield").val('');
+$("#messages_<%= @room.id %>").html("<%= j(render 'public/rooms/messages', messages: @messages) %>");

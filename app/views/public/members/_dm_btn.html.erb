@@ -1,10 +1,13 @@
   <!--DM送るボタン用の記述-->
-<div class="mr-2">
-  <% if current_member.following?(member) %>
+<div class="mr-1">
+  <% if current_member.following?(member) && (member.following? current_member) %>
     <% if @is_room == true %>
-      <%= link_to "DMを送る", member_room_path(member_id: member.id, id: @room_id), class: "btn btn-secondary mr-3" %>
+      <%= link_to "DMを送る", room_path(@room_id), class: "btn btn-secondary mr-3" %>
     <% else %>
-        <%= link_to "DMルームを作成", member_rooms_path(member_id: member.id), method: :post, class: "btn btn-secondary mr-3" %>
+      <%= form_with model: room do |f| %>
+        <%= f.hidden_field :member_id, value: member.id %>
+        <%= f.submit "チャットを始める", class: "btn btn-primary" %>
+      <% end %>
     <% end %>
   <% end %>
 </div>

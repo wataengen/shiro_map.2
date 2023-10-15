@@ -39,10 +39,10 @@ devise_for :admin,skip: [:registrations, :passwords], controllers: {
         get "posts/draft_index" => "posts#draft_index"
       end
       resource :relationships, only: [:create, :destroy]
-      
-      resources :messages, only: [:create]
-      resources :rooms, only: [:create,:show]
+
     end
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create,:show]
 
 
     resources :posts do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_10_14_111421) do
+ActiveRecord::Schema.define(version: 2023_10_15_082857) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -104,6 +104,18 @@ ActiveRecord::Schema.define(version: 2023_10_14_111421) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "subject_type"
+    t.integer "subject_id"
+    t.integer "member_id"
+    t.string "action_type", default: "", null: false
+    t.boolean "checked", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_notifications_on_member_id"
+    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+  end
+
   create_table "post_comments", force: :cascade do |t|
     t.text "comment", null: false
     t.integer "member_id", null: false
@@ -176,5 +188,6 @@ ActiveRecord::Schema.define(version: 2023_10_14_111421) do
   add_foreign_key "entries", "rooms"
   add_foreign_key "messages", "members"
   add_foreign_key "messages", "rooms"
+  add_foreign_key "notifications", "members"
   add_foreign_key "rooms", "members"
 end

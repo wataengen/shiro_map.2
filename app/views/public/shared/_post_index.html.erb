@@ -47,7 +47,7 @@
           <%= link_to post.created_at.strftime('%Y/%m/%d %H/%M/%S'), post_path(post.id) %>
         </div>
         <%= render 'public/shared/favorite_btn', post: post %>
-        <%= render 'public/shared/post_comment', post: post %>
+        <%= render 'public/shared/post_comment', post: post, comments: @post_comments %>
         <%= render 'public/shared/post_comment_form', post: post, post_comment: @post_comment %>
       </div>
     </div>

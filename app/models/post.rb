@@ -35,4 +35,9 @@ class Post < ApplicationRecord
   def post_favorited_by?(member)
    post_favorites.exists?(member_id: member.id)
   end
+
+  # 下書きでない、削除していない投稿を判定（public側で表示させたい投稿を判定）
+  def self.posts_index
+    self.where(draft_status: true, display_status: true).order(updated_at: :desc)
+  end
 end

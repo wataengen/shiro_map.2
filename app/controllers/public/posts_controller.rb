@@ -17,9 +17,9 @@ class Public::PostsController < ApplicationController
       render :new
     end
   end
-
+  # 下書き一覧を表示
   def draft_index
-    @posts = Post.where(member_id: current_member.id).where(display_status: true, draft_status: false) .sort_by{|post| -(post[:id].to_i)}
+    @posts = Post.where(member_id: current_member.id).where(display_status: true, draft_status: false).order(updated_at: :desc)
     @tag_list = Tag.all
   end
 

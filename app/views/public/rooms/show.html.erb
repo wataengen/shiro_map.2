@@ -1,18 +1,21 @@
-<h3>DM</h3>
-
-<% if @messages.blank? %>
-  <h3 class="text-center">メッセージはまだありません</h3>
-<% else %>
-  <div id="messages_<%= @room.id %>">
-    <%= render "public/rooms/messages", messages: @messages %>
+<div class="container p-3">
+  <div class="row">
+    <div class="col-12">
+      <h3>メッセージルーム</h3>
+      <% if @messages.blank? %>
+        <h3 class="text-center">メッセージはまだありません</h3>
+      <% else %>
+        <div id="messages_<%= @room.id %>">
+          <%= render "public/rooms/messages", messages: @messages %>
+        </div>
+      <% end %>
+      <%= form_with model: @message, local: false do |f| %>
+        <%= f.text_field :message, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
+        <%= f.hidden_field :room_id, :value => @room.id %>
+        <div>
+          <%= f.submit "送る", class: "btn btn-primary", remote: true, data: {"turbolinks" => false} %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-<% end %>
-
-
-<%= form_with model: @message, local: false do |f| %>
-  <%= f.text_field :message, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
-  <%= f.hidden_field :room_id, :value => @room.id %>
-  <br>
-  <%= f.submit "送る", class: "btn btn-primary", remote: true, data: {"turbolinks" => false} %>
-<% end %>
+</div>

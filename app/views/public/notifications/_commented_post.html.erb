@@ -1,7 +1,14 @@
-<div>
+<div class="row justify-content-left">
+  <div class="mt-2 ms-1">
+    <% if notification.subject.member.icon_image.attached? %>
+      <p><%= image_tag notification.subject.member.icon_image, class: "rounded-circle border border-secondary", size: "40x40" %></p>
+    <% else %>
+      <P><%= image_tag 'sengoku_busyou_shiki.png', class: "rounded-circle border border-secondary", size: "40x40" %></P>
+    <% end %>
+  </div>
   <%= link_to notification.subject.member.nick_name, member_path(notification.subject.member) %>
   があなたの
   <%= link_to '投稿', post_path(notification.subject.post) %>
   にコメントしました
-  <%#= " (#{time_ago_in_words(notification.created_at)}前)" %>
+  <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
 </div>

@@ -27,7 +27,7 @@ class Public::HomesController < ApplicationController
 
   def mypage
     @member = current_member
-    posts = Post.all
+    posts = Post.where(member_id: @member.id)
     @posts = posts.posts_index
     @post_comment = PostComment.new
   end

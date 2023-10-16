@@ -13,3 +13,8 @@ footer {
 .text-nowarp {
   white-space: nowrap;
 }
+.members-profile{
+  outline: 2px solid;
+  outline-color: #C0C0C0;
+  border-radius: 0.5rem;
+}

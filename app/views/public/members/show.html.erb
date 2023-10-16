@@ -2,14 +2,12 @@
   <div class="row">
     <div class="col-12">
       <%= render 'public/members/members_profile', member: @member, room: @room, entry: @entry %>
-      <div class="row">
-        <%= render 'members_bar', member: @member %>
+      <%= render 'members_bar', member: @member %>
         <% if @posts.blank? %>
           <div>まだ投稿はありません</div>
         <% else %>
           <%= render 'public/shared/post_index', posts: @posts %>
         <% end %>
-      </div>
         <%= render 'public/shared/new_post_btn' %>
     </div>
   </div>

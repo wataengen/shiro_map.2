@@ -1,6 +1,11 @@
-<% shiros.each do |shiro| %>
-  <div class="container card bg-light">
-    <div>
+<%= render '/layouts/shiro_map', shiros: shiros %>
+<style type="text/css">
+  #map {  height: 400px;
+          width: 100%;}
+</style>
+<div class="row">
+  <% shiros.each do |shiro| %>
+    <div class="container card bg-light shiro-card">
       <% if shiro.images.attached? %>
         <% shiro.images.each do |image| %>
           <%= image_tag image, class: "object-fit-cover", size: "200x200" %>
@@ -8,26 +13,26 @@
       <% else %>
         <%= image_tag asset_path("nagoyajou.png"), size: "200x200" %>
       <% end %>
-    </div>
-    <div class="row">
-      <div class="col-3">城名：</div>
-      <div class="col-9">
-        <%= link_to shiro.name, shiro_path(shiro.id) %>
+      <div class="row">
+        <div class="col-3">城名：</div>
+        <div class="col-9">
+          <%= link_to shiro.name, shiro_path(shiro.id) %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-3">城詳細：</div>
-      <div class="col-9">
-        <%= shiro.detail %>
+      <div class="row">
+        <div class="col-3">城詳細：</div>
+        <div class="col-9">
+          <%= shiro.detail %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-3">城住所情報：</div>
-      <div class="col-9">
-        <%= shiro.address %>
+      <div class="row">
+        <div class="col-3">城住所情報：</div>
+        <div class="col-9">
+          <%= shiro.address %>
+        </div>
       </div>
+      <%= render 'public/shared/shiro_favorite_btn', shiro: shiro %>
+      <%= render 'public/shared/shiro_mymap_btn', shiro: shiro %>
     </div>
-    <%= render 'public/shared/shiro_favorite_btn', shiro: shiro %>
-    <%= render 'public/shared/shiro_mymap_btn', shiro: shiro %>
-  </div>
-<% end %>
+  <% end %>
+</div>

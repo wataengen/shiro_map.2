@@ -2,14 +2,12 @@
   <div class="row">
     <div class="col-12">
       <%= render 'public/members/members_profile', member: @member %>
-      <div class="row">
         <%= render 'public/members/members_bar', member: @member %>
         <% if @my_maps.blank?%>
           <div>まだ訪れた城はありません</div>
         <% else %>
           <%= render 'public/shared/shiro_index', shiros: @my_maps %>
         <% end %>
-      </div>
       <%= render 'public/shared/new_post_btn' %>
     </div>
   </div>

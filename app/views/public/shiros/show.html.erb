@@ -7,7 +7,7 @@
               <div class="row">
                 <% @shiro.images.each do |image| %>
                   <div class="col">
-                    <%= image_tag image, class: "object-fit-cover", size: "150x100" %>
+                    <%= image_tag image, class: "object-fit-cover", size: "200x200" %>
                   </div>
                 <% end %>
               </div>
@@ -51,8 +51,8 @@
                     src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
             </script>
             <style type="text/css">
-              #map { height: 600px;
-                     width: 90%;
+              #map { height: 300px;
+                     width: 100%;
                      display: flex;
                      justify-content: center;
                      align-items: center;}

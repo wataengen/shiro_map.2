@@ -2,14 +2,12 @@
   <div class="row">
     <div class="col-12">
       <%= render 'public/members/members_profile', member: @member %>
-      <div class="row">
       <%= render 'public/members/members_bar', member: @member %>
       <% if @shiro_favorites.blank? %>
         <div>まだ行きたい城はありません</div>
       <% else %>
        <%= render 'public/shared/shiro_index', shiros: @shiro_favorites %>
       <% end %>
-    </div>
       <%= render 'public/shared/new_post_btn' %>
     </div>
   </div>

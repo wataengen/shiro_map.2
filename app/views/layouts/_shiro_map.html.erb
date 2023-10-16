@@ -10,24 +10,51 @@
             transitLayer.setMap(map);
 
         const test = [];
-        const contentString = [];
+        const shiroName = [];
+        const shiroDetail = [];
         const shiroShow = [];
+        const contentString =[];
         const marker = [];
+        const infowindow = [];
 
-        <% @shiros.each do |shiro| %>
+        <% shiros.each do |shiro| %>
             test[<%= shiro.id %>] = {lat: <%= shiro.latitude %>, lng: <%= shiro.longitude %>};
-            contentString[<%= shiro.id %>] = '城名：<%= shiro.name %>';
-            shiroShow[<%= shiro.id %>] = '<%= shiro_path(shiro.id) %>'
+            shiroName[<%= shiro.id %>] = '<%= shiro.name %>';
+
+            <% if admin_signed_in? %>
+              shiroShow[<%= shiro.id %>] = '<%= link_to shiro.name, admin_shiro_path(shiro.id) %>';
+            <% else %>
+              shiroShow[<%= shiro.id %>] = '<%= link_to shiro.name, shiro_path(shiro.id) %>';
+            <% end %>
+
+            contentString[<%= shiro.id %>]  = '<% if shiro.images.attached? %>'
+                                            + '<% shiro.images.each do |image| %>'
+                                            + '<%= image_tag image, class: "object-fit-cover", size: "100x100" %>'
+                                            + '<% end %>'
+                                            + '<% end %>'
+                                            + '<br>'
+                                            + shiroShow[<%= shiro.id %>]
+                                            + '<br>'
+                                            + '<%= shiro.name %>'
+                                            + '<%= shiro.detail %>'
+                                            + '';
 
             marker[<%= shiro.id %>] = new google.maps.Marker({
                     position: test[<%= shiro.id %>],
                     map: map,
-                    title: contentString[<%= shiro.id %>],
-                    url: shiroShow[<%= shiro.id %>],
+                    title: shiroName[<%= shiro.id %>],
                     });
 
-            marker[<%= shiro.id %>].addListener('click', function() {
-                    infowindow.open(map[<%= shiro.id %>], marker[<%= shiro.id %>]);
+            infowindow[<%= shiro.id %>] = new google.maps.InfoWindow({
+                    content: contentString[<%= shiro.id %>],
+                    ariaLabel: shiroName[<%= shiro.id %>],
+                    });
+
+            marker[<%= shiro.id %>].addListener('click', () => {
+                    infowindow[<%= shiro.id %>].open({
+                      anchor: marker[<%= shiro.id %>],
+                      map,
+                      });
                     });
         <% end %>
                     }

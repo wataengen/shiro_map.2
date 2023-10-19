@@ -7,22 +7,24 @@ class Public::MembersController < ApplicationController
     @following_users = @member.following_members
     @follower_users = @member.follower_members
 
-    # DM機能の用の記述
-    current_member_entry=Entry.where(member_id: current_member.id)
-    member_entry=Entry.where(member_id: @member.id)
-    unless @member == current_member
-      current_member_entry.each do |cme|
-        member_entry.each do |me|
-          if cme.room_id == me.room_id then
-            @is_room = true
-            @room_id = cme.room_id
+    if member_signed_in?
+      # DM機能の用の記述
+      current_member_entry=Entry.where(member_id: current_member.id)
+      member_entry=Entry.where(member_id: @member.id)
+      unless @member == current_member
+        current_member_entry.each do |cme|
+          member_entry.each do |me|
+            if cme.room_id == me.room_id then
+              @is_room = true
+              @room_id = cme.room_id
+            end
           end
         end
-      end
-      if @is_room
-      else
-        @room = Room.new
-        @entry = Entry.new
+        if @is_room
+        else
+          @room = Room.new
+          @entry = Entry.new
+        end
       end
     end
   end

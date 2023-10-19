@@ -49,8 +49,10 @@
       <% end %>
     <% else %>
     <div class="row mr-2">
-      <%= render 'public/members/dm_btn', member: member, room: room, entry: entry %>
-      <%= render 'public/members/follow_btn', member: member %>
+      <% if member_signed_in? %>
+        <%= render 'public/members/dm_btn', member: member, room: room, entry: entry %>
+        <%= render 'public/members/follow_btn', member: member %>
+      <% end %>
     </div>
 
     <% end %>

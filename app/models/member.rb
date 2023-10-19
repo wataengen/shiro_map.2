@@ -44,4 +44,8 @@ class Member < ApplicationRecord
   def following?(member)
     following_members.include?(member)
   end
+  
+  def member_signed_in
+    
+  end
 end

@@ -5,6 +5,7 @@
 <h3>会員ログイン</h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= render "public/shared/error_messages", resource: resource %>
   <div class="row mt-1">
     <div class="col-4">メールアドレス</div>
     <div class="col-6">

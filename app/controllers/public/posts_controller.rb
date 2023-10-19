@@ -12,7 +12,6 @@ class Public::PostsController < ApplicationController
       post.save_tags(tag_list)
       redirect_to post_path(post.id)
     else
-
       @post = Post.new
       render :new
     end

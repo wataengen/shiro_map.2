@@ -9,11 +9,10 @@ class Admin::ShirosController < ApplicationController
   end
 
   def create
-    shiro = Shiro.new(shiro_params)
-    if shiro.save
-      redirect_to admin_shiro_path(shiro.id)
+    @shiro = Shiro.new(shiro_params)
+    if @shiro.save
+      redirect_to admin_shiro_path(@shiro.id)
     else
-      @shiro = Shiro.new
       render :new
     end
   end
@@ -26,11 +25,10 @@ class Admin::ShirosController < ApplicationController
     @shiro = Shiro.find(params[:id])
   end
   def update
-    shiro = Shiro.find(params[:id])
-    if shiro.update(shiro_params)
-      redirect_to admin_shiro_path(shiro.id)
+    @shiro = Shiro.find(params[:id])
+    if @shiro.update(shiro_params)
+      redirect_to admin_shiro_path(@shiro.id)
     else
-      @shiro = Shiro.find(params[:id])
       render :edit
     end
   end

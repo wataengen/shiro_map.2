@@ -1,5 +1,8 @@
 class Public::PostsController < ApplicationController
   before_action :is_matching_login_member, only: [:edit, :update]
+  def index
+    redirect_to root_path
+  end
   def new
     @post = Post.new
     @tag_list = @post.tags.pluck(:name).join(',')
@@ -13,6 +16,7 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(post.id)
     else
       @post = Post.new
+      @tag_list = @post.tags.pluck(:name).join(',')
       render :new
     end
   end
@@ -45,7 +49,7 @@ class Public::PostsController < ApplicationController
       post.save_tags(tag_list)
       redirect_to post_path
     else
-      @shiro = Shiro.find(params[:id])
+      @post = Post.find(params[:id])
       render :edit
     end
   end

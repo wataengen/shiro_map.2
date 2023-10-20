@@ -1,14 +1,7 @@
 <div class="container p-3">
   <div class="row">
     <div class="col-12">
-      <% if @post.errors.any? %>
-         <%= @post.errors.count %>件のエラーが発生しました
-          <ul>
-            <% @post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-      <% end %>
+      <%= render "/layouts/error_message", resource: @post %>
       <%= form_with model: @post, "data-turbolinks": false do |f| %>
       <h3>投稿編集</h3>
       <div class="row">

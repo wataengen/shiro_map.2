@@ -5,6 +5,7 @@
       <div class="justify-content-end container">
         <div class="card text-center col-4">
           <strong><%= m.message %></strong>
+          <%= " (#{time_ago_in_words(m.created_at)}前)" %>
         </div>
         <div class="col-4 text-right">
           <div class="mt-2 ms-1 text-right">
@@ -21,6 +22,7 @@
       <div class="text-left container">
         <div class="card text-center col-4">
           <strong><%= m.message %></strong>
+          <%= " (#{time_ago_in_words(m.created_at)}前)" %>
         </div>
         <div>
           <div class="mt-2 ms-1">

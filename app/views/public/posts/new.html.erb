@@ -1,17 +1,18 @@
 <div class="container p-3">
   <div class="row">
   <div class="col-12">
-
-    <%= form_with model: @post, "data-turbolinks": false do |f| %>
-    <h3>新規投稿</h3>
-      <% if f.object.errors.any? %>
-         <%= f.object.errors.count %>件のエラーが発生しました
+    <% if @post.errors.any? %>
+         <%= @post.errors.count %>件のエラーが発生しました
           <ul>
-            <% f.object.errors.full_messages.each do |message| %>
+            <% @post.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>
       <% end %>
+
+    <%= form_with model: @post, "data-turbolinks": false do |f| %>
+    <h3>新規投稿</h3>
+
       <div class="row">
         <div class="col-3">画像（4枚まで投稿可能）</div>
         <div class="col-6">

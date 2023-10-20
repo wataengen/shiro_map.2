@@ -8,15 +8,13 @@ class Public::PostsController < ApplicationController
     @tag_list = @post.tags.pluck(:name).join(',')
   end
   def create
-    post = Post.new(post_params)
-    post.member_id = current_member.id
+    @post = Post.new(post_params)
+    @post.member_id = current_member.id
     tag_list = params[:post][:name].split(',')
-    if post.save
-      post.save_tags(tag_list)
-      redirect_to post_path(post.id)
+    if @post.save
+      @post.save_tags(tag_list)
+      redirect_to post_path(@post.id)
     else
-      @post = Post.new
-      @tag_list = @post.tags.pluck(:name).join(',')
       render :new
     end
   end
@@ -43,13 +41,12 @@ class Public::PostsController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     tag_list = params[:post][:name].split(',')
-    if post.update(post_params)
-      post.save_tags(tag_list)
-      redirect_to post_path
+    if @post.update(post_params)
+      @post.save_tags(tag_list)
+      redirect_to post_path(@post.id)
     else
-      @post = Post.find(params[:id])
       render :edit
     end
   end
@@ -60,7 +57,7 @@ class Public::PostsController < ApplicationController
       redirect_to mypage_path
     else
       @post = Post.find(params[:id])
-      @tag_list = @post.tags.pluck(:name).join(',')
+      @tag_list = post.tags.pluck(:name).join(',')
       render :edit
     end
   end

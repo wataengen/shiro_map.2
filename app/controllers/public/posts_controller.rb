@@ -24,9 +24,13 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @tag_list = @post.tags.pluck(:name).join(',')
-    @post_tags = @post.tags
-    @post_comment = PostComment.new
+    if @post.draft_status = false
+      @tag_list = @post.tags.pluck(:name).join(',')
+      @post_tags = @post.tags
+      @post_comment = PostComment.new
+    else
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -69,4 +73,5 @@ class Public::PostsController < ApplicationController
       redirect_to root_path
     end
   end
+
 end

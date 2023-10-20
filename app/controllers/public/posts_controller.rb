@@ -24,7 +24,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    if @post.draft_status = false
+    if @post.draft_status == true
       @tag_list = @post.tags.pluck(:name).join(',')
       @post_tags = @post.tags
       @post_comment = PostComment.new
